@@ -1,19 +1,85 @@
 #include <iostream>
 #include <fstream>
-#include "Graph.h"
 #include <string>
 #include <map>
 
+#include "Graph.h"
+
+using std::cin;
+using std::getline;
+const string DATA_FILE = "data4.json";
+
+enum string_code
+{
+	printVertices = 1,
+	addVertice,
+	removeVertice,
+	addEdge,
+	removeEdge,
+	saveGraph,
+
+	task1 = 10,
+	task2,
+
+	help = 20,
+	quit
+};
+
+string_code Hashing(std::string const& inString) {
+	if (inString == "1") return printVertices;
+	if (inString == "2") return addVertice;
+	if (inString == "3") return removeVertice;
+	if (inString == "4") return addEdge;
+	if (inString == "5") return removeEdge;
+	if (inString == "6") return saveGraph;
+
+	if (inString == "T1") return task1;
+	if (inString == "T2") return task2;
+
+	if (inString == "h") return help;
+	if (inString == "q") return quit;
+}
+
+void task1_14(Graph* graph, const string& vertice)
+{
+	auto list = graph->getAdjacencyList();
+	auto map = list[vertice];
+	std::cout << vertice << ": ";
+	for (auto& el : map)
+	{
+		std::cout << "(" << el.first << ", " << el.second << ") ";
+	}
+	std::cout << '\n';
+}
+
+void task2_9(Graph* graph, const string& vertice)
+{
+	auto list = graph->getAdjacencyList();
+	auto mapTarget = list[vertice];
+	for (auto el : list)
+	{
+		if (el.second.size() > mapTarget.size())
+		{
+			std::cout << el.first << ' ';
+		}
+	}
+	std::cout << '\n';
+}
+
 void CommandMessage()
 {
-	std::cout << "Select command:" << '\n'
-		<< "1 - Print Vertices" << '\n'
-		<< "2 - Add vertice" << '\n'
-		<< "3 - Remove vertice" << '\n'
-		<< "4 - Add edge" << '\n'
-		<< "5 - Remove edge" << '\n'
-		<< "6 - Save graph" << '\n'
-		<< "Type 'q' to exit" << '\n';
+	std::cout << "Select command:\n"
+		<< "1 - Print Vertices\n"
+		<< "2 - Add vertice\n"
+		<< "3 - Remove vertice\n"
+		<< "4 - Add edge\n"
+		<< "5 - Remove edge\n"
+		<< "6 - Save graph\n\n"
+		<< "T1 - task 1\n"
+		<< "T2 - task 2\n"
+		<< '\n'
+		<< "'h' to print this message\n"
+		<< "'q' to exit program\n";
 }
 
 bool is_number(const std::string& s)
@@ -23,126 +89,141 @@ bool is_number(const std::string& s)
 	return !s.empty() && it == s.end();
 }
 
-Graph* CreateGraph(string& message, uint8_t& comNumber)
+Graph* CreateGraph(string& command)
 {
-	std::cout << "No graph found. Choose directed or undirected graph" << '\n'
-		<< "1 - Directed graph" << '\n'
-		<< "2 - Undirected graph" << std::endl;
-	while (comNumber != 1 && comNumber != 2)
+	while (true)
 	{
-		std::cin >> message;
-		comNumber = std::stoi(message);
-		switch (comNumber)
+		std::cout << "No graph found. Choose directed or undirected graph\n"
+			<< "1 - Directed graph\n"
+			<< "2 - Undirected graph\n";
+		getline(cin, command);
+		switch (Graph::Hashing(command))
 		{
-		case 1:
-			std::cout << "Created a new directed graph";
+		case Graph::undirected:
+			std::cout << "Created a new directed graph\n";
 			return new Graph(true);
-		case 2:
-			std::cout << "Created a new undirected graph";
+		case Graph::directed:
+			std::cout << "Created a new undirected graph\n";
 			return new Graph(false);
 		default:
-			std::cout << "Invalid value";
 			break;
 		}
 	}
 }
 
-const string DATA_FILE = "data3.json";
-
 int main()
 {
-	string message = "";
+	string command;
 	string verticeTitle1;
 	string verticeTitle2;
 	string weightMsg;
-	uint8_t comNumber;
+	uint8_t code;
 
 	Graph* graph;
 	std::ifstream file(DATA_FILE);
 	if (file.is_open())
 		graph = new Graph(file);
 	else
-		graph = CreateGraph(message, comNumber);
+		graph = CreateGraph(command);
 	file.close();
 
+	//copy-constructor test
 	Graph k = Graph(*graph);
 
 	CommandMessage();
-	while (message != "q")
+	while (true)
 	{
-		std::cin >> message;
-		if (message == "q")
-			break;
-		try
+		std::cout << "Command: ";
+		getline(cin, command);
+		switch (Hashing(command))
 		{
-			comNumber = std::stoi(message);
-		}
-		catch (std::invalid_argument)
-		{
-			std::cout << "Wrong command number" << '\n';
-			continue;
-		}
-		switch (comNumber)
-		{
-		case 1:
+		case string_code::printVertices:
 			graph->PrintVertices();
 			break;
-		case 2:
-			std::cout << "Enter vertice to add:" << '\n';
-			std::cin >> verticeTitle1;
-			graph->AddVertice(verticeTitle1);
-			std::cout << "Vertice added succesfully" << '\n';
+
+		case string_code::addVertice:
+			std::cout << "Enter vertice to add: ";
+			getline(cin, verticeTitle1);
+			if (graph->AddVertice(verticeTitle1))
+				std::cout << "Vertice added succesfully\n";
+			else
+				std::cout << "Vertice already exists\n";
 			break;
-		case 3:
-			std::cout << "Enter vertice to remove:" << '\n';
-			std::cin >> verticeTitle1;
+
+		case string_code::removeVertice:
+			std::cout << "Enter vertice to remove: ";
+			getline(cin, verticeTitle1);
 			if (graph->RemoveVertice(verticeTitle1))
-			{
-				std::cout << "Vertice removed successfully" << '\n';
-			}
+				std::cout << "Vertice removed successfully\n";
 			else
-			{
-				std::cout << "No such vertice in graph" << '\n';
-			}
+				std::cout << "No such vertice in graph\n";
 			break;
-		case 4:
-			std::cout << "Enter start vertice:" << '\n';
-			std::cin >> verticeTitle1;
-			std::cout << "Enter end vertice:" << '\n';
-			std::cin >> verticeTitle2;
-			std::cout << "Enter edge weight (default = 1)" << '\n';
-			std::cin >> weightMsg;
-			if (graph->AddEdge(verticeTitle1, verticeTitle2,
-				is_number(weightMsg) ? std::stoi(weightMsg) : 1))
+
+		case string_code::addEdge:
+			std::cout << "Enter start vertice: ";
+			getline(cin, verticeTitle1);
+			std::cout << "Enter end vertice: ";
+			getline(cin, verticeTitle2);
+			std::cout << "Enter edge weight (default = 1): ";
+			getline(cin, weightMsg);
+			if (weightMsg.empty())
+				weightMsg = "1";
+			while (!is_number(weightMsg))
 			{
-				std::cout << "Vertice added successfully" << '\n';
+				std::cout << "Wrong weight value! Enter integer: ";
+				getline(cin, weightMsg);
 			}
+
+			//think of adding edge logic
+			code = graph->AddEdge(verticeTitle1, verticeTitle2, std::stoi(weightMsg));
+			if (code == Graph::code_error::no_error)
+				std::cout << "Edge added successfully\n";
+			else if (code == Graph::code_error::replacement)
+				std::cout << "The weight of existing edge was changed\n";
+			else if (code == Graph::code_error::no_vertices)
+				std::cout << "No such pair of vertices in graph\n";
 			else
-			{
-				std::cout << "No such pair of vertices in graph" << '\n';
-			}
+				std::cout << "Edge already exists\n";
 			break;
-		case 5:
-			std::cout << "Enter start vertice:" << '\n';
-			std::cin >> verticeTitle1;
-			std::cout << "Enter end vertice:" << '\n';
-			std::cin >> verticeTitle2;
+
+		case string_code::removeEdge:
+			std::cout << "Enter start vertice: ";
+			getline(cin, verticeTitle1);
+			std::cout << "Enter end vertice: ";
+			getline(cin, verticeTitle2);
 			if (graph->RemoveEdge(verticeTitle1, verticeTitle2))
-			{
-				std::cout << "Edge removed successfully" << '\n';
-			}
+				std::cout << "Edge removed successfully\n";
 			else
-			{
-				std::cout << "No such pair of vertices in graph" << '\n';
-			}
+				std::cout << "No such edge in graph\n";
 			break;
-		case 6:
+
+		case string_code::saveGraph:
 			graph->Save(DATA_FILE);
-			std::cout << "Graph saved succesfully" << '\n';
+			std::cout << "Graph saved succesfully\n";
 			break;
+
+		case string_code::task1:
+			std::cout << "Enter vertice to print: ";
+			getline(cin, verticeTitle1);
+			task1_14(graph, verticeTitle1);
+			break;
+		case string_code::task2:
+			std::cout << "Enter vertice: ";
+			getline(cin, verticeTitle1);
+			task2_9(graph, verticeTitle1);
+			break;
+
+		case string_code::help:
+			CommandMessage();
+			break;
+
+		case string_code::quit:
+			graph->Save(DATA_FILE);
+			return 0;
+
 		default:
-			std::cout << "Wrong Command Number" << '\n';
-		}
+			std::cout << "Wrong Command Number\n";
+		}		
 	}
 	graph->Save(DATA_FILE);
 	return 0;
