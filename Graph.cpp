@@ -60,34 +60,46 @@ bool Graph::AddVertice(const string& vertice)
 	}
 }
 
-//OPTIMIZE (MAYBE ADD REPLACE METHOD)
-uint8_t Graph::AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight)
+uint8_t Graph::ChangeWeight(const string& startVertice, const string& endVertice, const int32_t& weight)
 {
-	auto k = adjacencyList[startVertice];
-	if (adjacencyList.find(startVertice) == adjacencyList.end()
-		&& adjacencyList.find(endVertice) == adjacencyList.end())
-	{
-		//fail: no such vertices
-		return code_error::no_vertices;
-	}
-	if (adjacencyList[startVertice].find(endVertice) != adjacencyList[startVertice].end())
-	{
-		//fail: edge already exists 
-		if (adjacencyList[startVertice][endVertice] == weight)
-			return code_error::edge_exists;
-		else
-		{
-			adjacencyList[startVertice][endVertice] = weight;
-			if (!isOriented)
-				adjacencyList[endVertice][startVertice] = weight;
-			//success
-			return code_error::replacement;
-		}
-	}
+	//fail: no first vertice
+	if (adjacencyList.find(startVertice) == adjacencyList.end())
+		return code_error::no_vertice1;
+
+	//fail: no second vertice
+	if (adjacencyList.find(endVertice) == adjacencyList.end())
+		return code_error::no_vertice2;
+
+	//fail: no such edge
+	if (adjacencyList[startVertice].find(endVertice) == adjacencyList[startVertice].end())
+		return code_error::no_edge;
+
+	//success
 	adjacencyList[startVertice][endVertice] = weight;
 	if (!isOriented)
 		adjacencyList[endVertice][startVertice] = weight;
+	return code_error::replacement;	
+}
+
+//OPTIMIZE (MAYBE ADD REPLACE METHOD)
+uint8_t Graph::AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight)
+{
+	//fail: no first vertice
+	if (adjacencyList.find(startVertice) == adjacencyList.end())
+		return code_error::no_vertice1;
+
+	//fail: no second vertice
+	if (adjacencyList.find(endVertice) == adjacencyList.end())
+		return code_error::no_vertice2;
+
+	//fail: edge already exists
+	if (adjacencyList[startVertice].find(endVertice) != adjacencyList[startVertice].end())
+		return code_error::edge_exists;
+
 	//success
+	adjacencyList[startVertice][endVertice] = weight;
+	if (!isOriented)
+		adjacencyList[endVertice][startVertice] = weight;
 	return code_error::no_error;
 }
 

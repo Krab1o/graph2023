@@ -16,6 +16,7 @@ enum string_code
 	removeVertice,
 	addEdge,
 	removeEdge,
+	changeWeight,
 	saveGraph,
 
 	task1 = 10,
@@ -31,7 +32,8 @@ string_code Hashing(std::string const& inString) {
 	if (inString == "3") return removeVertice;
 	if (inString == "4") return addEdge;
 	if (inString == "5") return removeEdge;
-	if (inString == "6") return saveGraph;
+	if (inString == "6") return changeWeight;
+	if (inString == "7") return saveGraph;
 
 	if (inString == "T1") return task1;
 	if (inString == "T2") return task2;
@@ -74,7 +76,8 @@ void CommandMessage()
 		<< "3 - Remove vertice\n"
 		<< "4 - Add edge\n"
 		<< "5 - Remove edge\n"
-		<< "6 - Save graph\n\n"
+		<< "6 - Change edge's weight\n"
+		<< "7 - Save graph\n\n"
 		<< "T1 - task 1\n"
 		<< "T2 - task 2\n"
 		<< '\n'
@@ -141,6 +144,7 @@ int main()
 			graph->PrintVertices();
 			break;
 
+			//add enum
 		case string_code::addVertice:
 			std::cout << "Enter vertice to add: ";
 			getline(cin, verticeTitle1);
@@ -150,6 +154,7 @@ int main()
 				std::cout << "Vertice already exists\n";
 			break;
 
+			//add enum
 		case string_code::removeVertice:
 			std::cout << "Enter vertice to remove: ";
 			getline(cin, verticeTitle1);
@@ -174,16 +179,22 @@ int main()
 				getline(cin, weightMsg);
 			}
 
-			//think of adding edge logic
 			code = graph->AddEdge(verticeTitle1, verticeTitle2, std::stoi(weightMsg));
-			if (code == Graph::code_error::no_error)
+			switch (code)
+			{
+			case Graph::no_vertice1:
+				std::cout << "No vertice 1 represented in graph\n";
+				break;
+			case Graph::no_vertice2:
+				std::cout << "No vertice 2 represented in graph\n";
+				break;
+			case Graph::edge_exists:
+				std::cout << "Edge already exists between these 2 vertices\n";
+				break;
+			case Graph::no_error:
 				std::cout << "Edge added successfully\n";
-			else if (code == Graph::code_error::replacement)
-				std::cout << "The weight of existing edge was changed\n";
-			else if (code == Graph::code_error::no_vertices)
-				std::cout << "No such pair of vertices in graph\n";
-			else
-				std::cout << "Edge already exists\n";
+				break;
+			}
 			break;
 
 		case string_code::removeEdge:
@@ -195,6 +206,39 @@ int main()
 				std::cout << "Edge removed successfully\n";
 			else
 				std::cout << "No such edge in graph\n";
+			break;
+
+			//Think of uniting with AddEdge
+		case string_code::changeWeight:
+			std::cout << "Enter start vertice: "; 
+			getline(cin, verticeTitle1);
+			std::cout << "Enter end vertice: ";
+			getline(cin, verticeTitle2);
+			std::cout << "Enter edge weight (default = 1): ";
+			getline(cin, weightMsg);
+			if (weightMsg.empty())
+				weightMsg = "1";
+			while (!is_number(weightMsg))
+			{
+				std::cout << "Wrong weight value! Enter integer: ";
+				getline(cin, weightMsg);
+			}
+			code = graph->ChangeWeight(verticeTitle1, verticeTitle2, std::stoi(weightMsg));
+			switch (code)
+			{
+			case Graph::no_vertice1:
+				std::cout << "No vertice 1 represented in graph\n";
+				break;
+			case Graph::no_vertice2:
+				std::cout << "No vertice 2 represented in graph\n";
+				break;
+			case Graph::no_edge:
+				std::cout << "No edge exists between these 2 vertices\n";
+				break;
+			case Graph::no_error:
+				std::cout << "Edge added successfully\n";
+				break;
+			}
 			break;
 
 		case string_code::saveGraph:

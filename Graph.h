@@ -33,9 +33,14 @@ public:
 	enum code_error
 	{
 		no_error = 0,
-		replacement = 1,
-		no_vertices = 2,
-		edge_exists = 3
+
+		vertice_exists,
+		no_vertice1,
+		no_vertice2,
+
+		replacement,
+		edge_exists,
+		no_edge
 	};
 
 	Graph(bool orient = true);
@@ -52,6 +57,8 @@ public:
 
 	bool RemoveVertice(const string& vertice);
 	bool RemoveEdge(const string& startVertice, const string& endVertice);
+
+	uint8_t ChangeWeight(const string& startVertice, const string& endVertice, const int32_t& weight);
 
 	void Save(string fileName);
 private:
