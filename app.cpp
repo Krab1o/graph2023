@@ -7,7 +7,8 @@
 
 using std::cin;
 using std::getline;
-const string DATA_FILE = "data4.json";
+const string DATA_FILE1 = "data4.json";
+const string DATA_FILE2 = "data5.json";
 
 enum string_code
 {
@@ -21,6 +22,7 @@ enum string_code
 
 	task1 = 10,
 	task2,
+	task3,
 
 	help = 20,
 	quit
@@ -37,6 +39,7 @@ string_code Hashing(std::string const& inString) {
 
 	if (inString == "T1") return task1;
 	if (inString == "T2") return task2;
+	if (inString == "T3") return task3;
 
 	if (inString == "h") return help;
 	if (inString == "q") return quit;
@@ -46,26 +49,59 @@ void task1_14(Graph* graph, const string& vertice)
 {
 	auto list = graph->getAdjacencyList();
 	auto map = list[vertice];
-	std::cout << vertice << ": ";
-	for (auto& el : map)
+	if (map.empty())
 	{
-		std::cout << "(" << el.first << ", " << el.second << ") ";
+		std::cout << "No adjacent vertices!\n";
 	}
-	std::cout << '\n';
+	else
+	{
+		std::cout << vertice << ": ";
+		for (auto& el : map)
+		{
+			std::cout << "(" << el.first << ", " << el.second << ") ";
+		}
+		std::cout << '\n';
+	}
 }
 
 void task2_9(Graph* graph, const string& vertice)
 {
 	auto list = graph->getAdjacencyList();
-	auto mapTarget = list[vertice];
-	for (auto el : list)
+	if (list.find(vertice) == list.end())
 	{
-		if (el.second.size() > mapTarget.size())
-		{
-			std::cout << el.first << ' ';
-		}
+		std::cout << "No such vertice in graph\n";
+		return;
 	}
-	std::cout << '\n';
+	auto mapTarget = list[vertice];
+	uint16_t counter = 0;
+	{
+		for (auto el : list)
+		{
+			if (el.second.size() > mapTarget.size())
+			{
+				std::cout << el.first << ' ';
+				++counter;
+			}
+		}
+		if (!counter)
+			std::cout << "No such vertices!";
+		std::cout << '\n';
+	}
+}
+
+void task3_10(Graph* graph1, Graph* graph2)
+{
+	auto list1 = graph1->getAdjacencyList();
+	auto list2 = graph2->getAdjacencyList();
+	
+	map<string, map<string, int32_t>> newMap;
+	for (auto it : list1)
+		newMap[it.first];
+	for (auto it : list2)
+		newMap[it.first];
+
+	Graph* newGraph = new Graph(newMap, graph1->getOrientation());
+	
 }
 
 void CommandMessage()
@@ -77,9 +113,11 @@ void CommandMessage()
 		<< "4 - Add edge\n"
 		<< "5 - Remove edge\n"
 		<< "6 - Change edge's weight\n"
-		<< "7 - Save graph\n\n"
+		<< "7 - Save graph\n"
+		<< '\n'
 		<< "T1 - task 1\n"
 		<< "T2 - task 2\n"
+		<< "T3 - task 3\n"
 		<< '\n'
 		<< "'h' to print this message\n"
 		<< "'q' to exit program\n";
@@ -123,15 +161,16 @@ int main()
 	uint8_t code;
 
 	Graph* graph;
-	std::ifstream file(DATA_FILE);
+	std::ifstream file(DATA_FILE1);
 	if (file.is_open())
 		graph = new Graph(file);
 	else
 		graph = CreateGraph(command);
 	file.close();
 
-	//copy-constructor test
-	Graph k = Graph(*graph);
+	file.open(DATA_FILE2);
+	Graph* graph2 = new Graph(file);
+	file.close();
 
 	CommandMessage();
 	while (true)
@@ -242,7 +281,7 @@ int main()
 			break;
 
 		case string_code::saveGraph:
-			graph->Save(DATA_FILE);
+			graph->Save(DATA_FILE1);
 			std::cout << "Graph saved succesfully\n";
 			break;
 
@@ -256,19 +295,22 @@ int main()
 			getline(cin, verticeTitle1);
 			task2_9(graph, verticeTitle1);
 			break;
+		case string_code::task3:
+			task3_10(graph, graph2);
+			break;
 
 		case string_code::help:
 			CommandMessage();
 			break;
 
 		case string_code::quit:
-			graph->Save(DATA_FILE);
+			graph->Save(DATA_FILE1);
 			return 0;
 
 		default:
 			std::cout << "Wrong Command Number\n";
 		}		
 	}
-	graph->Save(DATA_FILE);
+	graph->Save(DATA_FILE1);
 	return 0;
 }

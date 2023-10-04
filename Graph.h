@@ -46,7 +46,10 @@ public:
 	Graph(bool orient = true);
 	Graph(ifstream& file);
 	Graph(const Graph& copiedValue);
+	Graph(map<string, map<string, int32_t>>, bool isOriented);
+
 	const map<string, map<string, int32_t>> getAdjacencyList() const;
+	bool getOrientation();
 
 	static graph_orientation Hashing(string const& inString);
 

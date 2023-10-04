@@ -23,6 +23,12 @@ Graph::Graph(const Graph& copiedValue)
 	this->adjacencyList = copiedValue.adjacencyList;
 }
 
+Graph::Graph(map <string, map<string, int32_t>> list, bool isOriented)
+{
+	this->adjacencyList = list;
+	this->isOriented = isOriented;
+}
+
 void Graph::PrintVertices()
 {
 	for (auto& list : adjacencyList)
@@ -39,6 +45,11 @@ void Graph::PrintVertices()
 const map<string, map<string, int32_t>> Graph::getAdjacencyList() const
 {
 	return adjacencyList;
+}
+
+bool Graph::getOrientation()
+{
+	return isOriented;
 }
 
 Graph::graph_orientation Graph::Hashing(std::string const& inString)
@@ -81,7 +92,6 @@ uint8_t Graph::ChangeWeight(const string& startVertice, const string& endVertice
 	return code_error::replacement;	
 }
 
-//OPTIMIZE (MAYBE ADD REPLACE METHOD)
 uint8_t Graph::AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight)
 {
 	//fail: no first vertice
