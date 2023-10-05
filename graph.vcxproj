@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="app.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="App.h" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Tasks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="Tasks.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data.json" />

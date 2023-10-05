@@ -1,32 +1,9 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <map>
+#include "App.h"
 
-#include "Graph.h"
-
-using std::cin;
+using std::string;
 using std::getline;
-const string DATA_FILE1 = "data4.json";
-const string DATA_FILE2 = "data5.json";
-
-enum string_code
-{
-	printVertices = 1,
-	addVertice,
-	removeVertice,
-	addEdge,
-	removeEdge,
-	changeWeight,
-	saveGraph,
-
-	task1 = 10,
-	task2,
-	task3,
-
-	help = 20,
-	quit
-};
+using std::cin;
+using std::cout;
 
 string_code Hashing(std::string const& inString) {
 	if (inString == "1") return printVertices;
@@ -43,65 +20,6 @@ string_code Hashing(std::string const& inString) {
 
 	if (inString == "h") return help;
 	if (inString == "q") return quit;
-}
-
-void task1_14(Graph* graph, const string& vertice)
-{
-	auto list = graph->getAdjacencyList();
-	auto map = list[vertice];
-	if (map.empty())
-	{
-		std::cout << "No adjacent vertices!\n";
-	}
-	else
-	{
-		std::cout << vertice << ": ";
-		for (auto& el : map)
-		{
-			std::cout << "(" << el.first << ", " << el.second << ") ";
-		}
-		std::cout << '\n';
-	}
-}
-
-void task2_9(Graph* graph, const string& vertice)
-{
-	auto list = graph->getAdjacencyList();
-	if (list.find(vertice) == list.end())
-	{
-		std::cout << "No such vertice in graph\n";
-		return;
-	}
-	auto mapTarget = list[vertice];
-	uint16_t counter = 0;
-	{
-		for (auto el : list)
-		{
-			if (el.second.size() > mapTarget.size())
-			{
-				std::cout << el.first << ' ';
-				++counter;
-			}
-		}
-		if (!counter)
-			std::cout << "No such vertices!";
-		std::cout << '\n';
-	}
-}
-
-void task3_10(Graph* graph1, Graph* graph2)
-{
-	auto list1 = graph1->getAdjacencyList();
-	auto list2 = graph2->getAdjacencyList();
-	
-	map<string, map<string, int32_t>> newMap;
-	for (auto it : list1)
-		newMap[it.first];
-	for (auto it : list2)
-		newMap[it.first];
-
-	Graph* newGraph = new Graph(newMap, graph1->getOrientation());
-	
 }
 
 void CommandMessage()
@@ -123,13 +41,6 @@ void CommandMessage()
 		<< "'q' to exit program\n";
 }
 
-bool is_number(const std::string& s)
-{
-	std::string::const_iterator it = s.begin();
-	while (it != s.end() && std::isdigit(*it)) ++it;
-	return !s.empty() && it == s.end();
-}
-
 Graph* CreateGraph(string& command)
 {
 	while (true)
@@ -137,7 +48,7 @@ Graph* CreateGraph(string& command)
 		std::cout << "No graph found. Choose directed or undirected graph\n"
 			<< "1 - Directed graph\n"
 			<< "2 - Undirected graph\n";
-		getline(cin, command);
+		getline(std::cin, command);
 		switch (Graph::Hashing(command))
 		{
 		case Graph::undirected:
@@ -152,165 +63,136 @@ Graph* CreateGraph(string& command)
 	}
 }
 
-int main()
+//Hidden
+bool is_number(const std::string& s)
 {
-	string command;
-	string verticeTitle1;
-	string verticeTitle2;
-	string weightMsg;
-	uint8_t code;
+	std::string::const_iterator it = s.begin();
+	while (it != s.end() && std::isdigit(*it)) ++it;
+	return !s.empty() && it == s.end();
+}
 
-	Graph* graph;
-	std::ifstream file(DATA_FILE1);
-	if (file.is_open())
-		graph = new Graph(file);
-	else
-		graph = CreateGraph(command);
-	file.close();
+void PrintVertices(Graph* graph)
+{
+	auto adjacencyList = graph->getAdjacencyList();
 
-	file.open(DATA_FILE2);
-	Graph* graph2 = new Graph(file);
-	file.close();
-
-	CommandMessage();
-	while (true)
+	for (auto& list : adjacencyList)
 	{
-		std::cout << "Command: ";
-		getline(cin, command);
-		switch (Hashing(command))
+		std::cout << list.first << ": ";
+		for (auto& el : list.second)
 		{
-		case string_code::printVertices:
-			graph->PrintVertices();
-			break;
-
-			//add enum
-		case string_code::addVertice:
-			std::cout << "Enter vertice to add: ";
-			getline(cin, verticeTitle1);
-			if (graph->AddVertice(verticeTitle1))
-				std::cout << "Vertice added succesfully\n";
-			else
-				std::cout << "Vertice already exists\n";
-			break;
-
-			//add enum
-		case string_code::removeVertice:
-			std::cout << "Enter vertice to remove: ";
-			getline(cin, verticeTitle1);
-			if (graph->RemoveVertice(verticeTitle1))
-				std::cout << "Vertice removed successfully\n";
-			else
-				std::cout << "No such vertice in graph\n";
-			break;
-
-		case string_code::addEdge:
-			std::cout << "Enter start vertice: ";
-			getline(cin, verticeTitle1);
-			std::cout << "Enter end vertice: ";
-			getline(cin, verticeTitle2);
-			std::cout << "Enter edge weight (default = 1): ";
-			getline(cin, weightMsg);
-			if (weightMsg.empty())
-				weightMsg = "1";
-			while (!is_number(weightMsg))
-			{
-				std::cout << "Wrong weight value! Enter integer: ";
-				getline(cin, weightMsg);
-			}
-
-			code = graph->AddEdge(verticeTitle1, verticeTitle2, std::stoi(weightMsg));
-			switch (code)
-			{
-			case Graph::no_vertice1:
-				std::cout << "No vertice 1 represented in graph\n";
-				break;
-			case Graph::no_vertice2:
-				std::cout << "No vertice 2 represented in graph\n";
-				break;
-			case Graph::edge_exists:
-				std::cout << "Edge already exists between these 2 vertices\n";
-				break;
-			case Graph::no_error:
-				std::cout << "Edge added successfully\n";
-				break;
-			}
-			break;
-
-		case string_code::removeEdge:
-			std::cout << "Enter start vertice: ";
-			getline(cin, verticeTitle1);
-			std::cout << "Enter end vertice: ";
-			getline(cin, verticeTitle2);
-			if (graph->RemoveEdge(verticeTitle1, verticeTitle2))
-				std::cout << "Edge removed successfully\n";
-			else
-				std::cout << "No such edge in graph\n";
-			break;
-
-			//Think of uniting with AddEdge
-		case string_code::changeWeight:
-			std::cout << "Enter start vertice: "; 
-			getline(cin, verticeTitle1);
-			std::cout << "Enter end vertice: ";
-			getline(cin, verticeTitle2);
-			std::cout << "Enter edge weight (default = 1): ";
-			getline(cin, weightMsg);
-			if (weightMsg.empty())
-				weightMsg = "1";
-			while (!is_number(weightMsg))
-			{
-				std::cout << "Wrong weight value! Enter integer: ";
-				getline(cin, weightMsg);
-			}
-			code = graph->ChangeWeight(verticeTitle1, verticeTitle2, std::stoi(weightMsg));
-			switch (code)
-			{
-			case Graph::no_vertice1:
-				std::cout << "No vertice 1 represented in graph\n";
-				break;
-			case Graph::no_vertice2:
-				std::cout << "No vertice 2 represented in graph\n";
-				break;
-			case Graph::no_edge:
-				std::cout << "No edge exists between these 2 vertices\n";
-				break;
-			case Graph::no_error:
-				std::cout << "Edge added successfully\n";
-				break;
-			}
-			break;
-
-		case string_code::saveGraph:
-			graph->Save(DATA_FILE1);
-			std::cout << "Graph saved succesfully\n";
-			break;
-
-		case string_code::task1:
-			std::cout << "Enter vertice to print: ";
-			getline(cin, verticeTitle1);
-			task1_14(graph, verticeTitle1);
-			break;
-		case string_code::task2:
-			std::cout << "Enter vertice: ";
-			getline(cin, verticeTitle1);
-			task2_9(graph, verticeTitle1);
-			break;
-		case string_code::task3:
-			task3_10(graph, graph2);
-			break;
-
-		case string_code::help:
-			CommandMessage();
-			break;
-
-		case string_code::quit:
-			graph->Save(DATA_FILE1);
-			return 0;
-
-		default:
-			std::cout << "Wrong Command Number\n";
-		}		
+			std::cout << "(" << el.first << ", " << el.second << ") ";
+		}
+		std::cout << '\n';
 	}
-	graph->Save(DATA_FILE1);
-	return 0;
+}
+
+void AddVertice(Graph* graph)
+{
+	string vertice;
+	std::cout << "Enter vertice to add: ";
+	getline(cin, vertice);
+	if (graph->AddVertice(vertice))
+		std::cout << "Vertice added succesfully\n";
+	else
+		std::cout << "Vertice already exists\n";
+}
+
+void RemoveVertice(Graph* graph)
+{
+	string vertice;
+	std::cout << "Enter vertice to remove: ";
+	getline(cin, vertice);
+	if (graph->RemoveVertice(vertice))
+		std::cout << "Vertice removed successfully\n";
+	else
+		std::cout << "No such vertice in graph\n";
+}
+
+void AddEdge(Graph* graph)
+{
+	string vertice1;
+	string vertice2;
+	string weightMsg;
+	std::cout << "Enter start vertice: ";
+	getline(cin, vertice1);
+	std::cout << "Enter end vertice: ";
+	getline(cin, vertice2);
+	std::cout << "Enter edge weight (default = 1): ";
+	getline(cin, weightMsg);
+	if (weightMsg.empty())
+		weightMsg = "1";
+	while (!is_number(weightMsg))
+	{
+		std::cout << "Wrong weight value! Enter integer: ";
+		getline(cin, weightMsg);
+		if (weightMsg.empty())
+			weightMsg = "1";
+	}
+
+	uint8_t code = graph->AddEdge(vertice1, vertice2, std::stoi(weightMsg));
+	switch (code)
+	{
+	case Graph::no_vertice1:
+		std::cout << "No vertice 1 represented in graph\n";
+		break;
+	case Graph::no_vertice2:
+		std::cout << "No vertice 2 represented in graph\n";
+		break;
+	case Graph::edge_exists:
+		std::cout << "Edge already exists between these 2 vertices\n";
+		break;
+	case Graph::no_error:
+		std::cout << "Edge added successfully\n";
+		break;
+	}
+}
+
+void RemoveEdge(Graph* graph)
+{
+	string vertice1;
+	string vertice2;
+	std::cout << "Enter start vertice: ";
+	getline(cin, vertice1);
+	std::cout << "Enter end vertice: ";
+	getline(cin, vertice2);
+	if (graph->RemoveEdge(vertice1, vertice2))
+		std::cout << "Edge removed successfully\n";
+	else
+		std::cout << "No such edge in graph\n";
+}
+
+void ChangeWeight(Graph* graph)
+{
+	string vertice1;
+	string vertice2;
+	string weightMsg;
+	std::cout << "Enter start vertice: ";
+	getline(cin, vertice1);
+	std::cout << "Enter end vertice: ";
+	getline(cin, vertice2);
+	std::cout << "Enter edge weight (default = 1): ";
+	getline(cin, weightMsg);
+	if (weightMsg.empty())
+		weightMsg = "1";
+	while (!is_number(weightMsg))
+	{
+		std::cout << "Wrong weight value! Enter integer: ";
+		getline(cin, weightMsg);
+	}
+	uint8_t code = graph->ChangeWeight(vertice1, vertice2, std::stoi(weightMsg));
+	switch (code)
+	{
+	case Graph::no_vertice1:
+		std::cout << "No vertice 1 represented in graph\n";
+		break;
+	case Graph::no_vertice2:
+		std::cout << "No vertice 2 represented in graph\n";
+		break;
+	case Graph::no_edge:
+		std::cout << "No edge exists between these 2 vertices\n";
+		break;
+	case Graph::no_error:
+		std::cout << "Edge added successfully\n";
+		break;
+	}
 }

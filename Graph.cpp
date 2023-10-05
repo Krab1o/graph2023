@@ -29,19 +29,6 @@ Graph::Graph(map <string, map<string, int32_t>> list, bool isOriented)
 	this->isOriented = isOriented;
 }
 
-void Graph::PrintVertices()
-{
-	for (auto& list : adjacencyList)
-	{
-		std::cout << list.first << ": ";
-		for (auto& el : list.second)
-		{
-			std::cout << "(" << el.first << ", " << el.second << ") ";
-		}
-		std::cout << '\n';
-	}
-}
-
 const map<string, map<string, int32_t>> Graph::getAdjacencyList() const
 {
 	return adjacencyList;

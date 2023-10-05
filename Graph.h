@@ -1,12 +1,8 @@
 #pragma once
 
-#include <list>
 #include <map>
-#include <utility>
 #include <fstream>
-#include <vector>
 #include <string>
-#include <algorithm>
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
@@ -52,8 +48,6 @@ public:
 	bool getOrientation();
 
 	static graph_orientation Hashing(string const& inString);
-
-	void PrintVertices();
 
 	bool AddVertice(const string& value);
 	uint8_t AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight);
