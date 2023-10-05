@@ -75,12 +75,9 @@ int main()
 		case string_code::task2:
 			task2_9(graph);
 			break;
-			/*
-		//NOT DONE
 		case string_code::task3:
 			task3_10(graph, graph2);
 			break;
-			*/
 
 		case string_code::help:
 			CommandMessage();

@@ -91,10 +91,15 @@ void AddVertice(Graph* graph)
 	string vertice;
 	std::cout << "Enter vertice to add: ";
 	getline(cin, vertice);
-	if (graph->AddVertice(vertice))
+	switch (graph->AddVertice(vertice))
+	{
+	case Graph::code_error::no_error:
 		std::cout << "Vertice added succesfully\n";
-	else
+		break;
+	case Graph::code_error::vertice_exists:
 		std::cout << "Vertice already exists\n";
+		break;
+	}	
 }
 
 void RemoveVertice(Graph* graph)
@@ -102,10 +107,15 @@ void RemoveVertice(Graph* graph)
 	string vertice;
 	std::cout << "Enter vertice to remove: ";
 	getline(cin, vertice);
-	if (graph->RemoveVertice(vertice))
+	switch (graph->RemoveVertice(vertice))
+	{
+	case Graph::code_error::no_error:
 		std::cout << "Vertice removed successfully\n";
-	else
+		break;
+	case Graph::code_error::no_vertice1:
 		std::cout << "No such vertice in graph\n";
+		break;
+	}
 }
 
 void AddEdge(Graph* graph)
@@ -129,8 +139,7 @@ void AddEdge(Graph* graph)
 			weightMsg = "1";
 	}
 
-	uint8_t code = graph->AddEdge(vertice1, vertice2, std::stoi(weightMsg));
-	switch (code)
+	switch (graph->AddEdge(vertice1, vertice2, std::stoi(weightMsg)))
 	{
 	case Graph::no_vertice1:
 		std::cout << "No vertice 1 represented in graph\n";
@@ -155,10 +164,16 @@ void RemoveEdge(Graph* graph)
 	getline(cin, vertice1);
 	std::cout << "Enter end vertice: ";
 	getline(cin, vertice2);
-	if (graph->RemoveEdge(vertice1, vertice2))
-		std::cout << "Edge removed successfully\n";
-	else
+
+	switch (graph->RemoveEdge(vertice1, vertice2))
+	{
+	case Graph::code_error::no_edge:
 		std::cout << "No such edge in graph\n";
+		break;
+	case Graph::code_error::no_error:
+		std::cout << "Edge removed successfully\n";
+		break;
+	}
 }
 
 void ChangeWeight(Graph* graph)
@@ -179,8 +194,8 @@ void ChangeWeight(Graph* graph)
 		std::cout << "Wrong weight value! Enter integer: ";
 		getline(cin, weightMsg);
 	}
-	uint8_t code = graph->ChangeWeight(vertice1, vertice2, std::stoi(weightMsg));
-	switch (code)
+
+	switch (graph->ChangeWeight(vertice1, vertice2, std::stoi(weightMsg)))
 	{
 	case Graph::no_vertice1:
 		std::cout << "No vertice 1 represented in graph\n";
@@ -192,7 +207,7 @@ void ChangeWeight(Graph* graph)
 		std::cout << "No edge exists between these 2 vertices\n";
 		break;
 	case Graph::no_error:
-		std::cout << "Edge added successfully\n";
+		std::cout << "Weight changed successfully\n";
 		break;
 	}
 }

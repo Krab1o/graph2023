@@ -5,6 +5,7 @@ using std::getline;
 using std::cin;
 using std::cout;
 
+//just prints adjacent vertices
 void task1_14(Graph* graph)
 {
 	string vertice;
@@ -28,6 +29,7 @@ void task1_14(Graph* graph)
 	}
 }
 
+//oriented graphs: only vertices which are reachable from current
 void task2_9(Graph* graph)
 {
 	string vertice;
@@ -59,6 +61,12 @@ void task2_9(Graph* graph)
 
 void task3_10(Graph* graph1, Graph* graph2)
 {
+	if (graph1->getOrientation() != graph2->getOrientation())
+	{
+		std::cout << "Graphs are incompatible\n";
+		return;
+	}
+
 	auto list1 = graph1->getAdjacencyList();
 	auto list2 = graph2->getAdjacencyList();
 
@@ -67,7 +75,13 @@ void task3_10(Graph* graph1, Graph* graph2)
 		newMap[it.first];
 	for (auto it : list2)
 		newMap[it.first];
+	for (auto it1 : newMap)
+	{
+		for (auto it2 : newMap)
+		{
 
+		}
+	}
 	Graph* newGraph = new Graph(newMap, graph1->getOrientation());
 
 }

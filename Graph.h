@@ -33,8 +33,6 @@ public:
 		vertice_exists,
 		no_vertice1,
 		no_vertice2,
-
-		replacement,
 		edge_exists,
 		no_edge
 	};
@@ -49,11 +47,11 @@ public:
 
 	static graph_orientation Hashing(string const& inString);
 
-	bool AddVertice(const string& value);
+	uint8_t AddVertice(const string& value);
 	uint8_t AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight);
 
-	bool RemoveVertice(const string& vertice);
-	bool RemoveEdge(const string& startVertice, const string& endVertice);
+	uint8_t RemoveVertice(const string& vertice);
+	uint8_t RemoveEdge(const string& startVertice, const string& endVertice);
 
 	uint8_t ChangeWeight(const string& startVertice, const string& endVertice, const int32_t& weight);
 

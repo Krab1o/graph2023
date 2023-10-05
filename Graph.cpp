@@ -29,6 +29,7 @@ Graph::Graph(map <string, map<string, int32_t>> list, bool isOriented)
 	this->isOriented = isOriented;
 }
 
+//getters
 const map<string, map<string, int32_t>> Graph::getAdjacencyList() const
 {
 	return adjacencyList;
@@ -41,21 +42,20 @@ bool Graph::getOrientation()
 
 Graph::graph_orientation Graph::Hashing(std::string const& inString)
 {
-	if (inString == "0") return undirected;
-	else return directed;
+	if (inString == "0") return graph_orientation::undirected;
+	else return graph_orientation::directed;
 }
 
-bool Graph::AddVertice(const string& vertice)
+//methods
+uint8_t Graph::AddVertice(const string& vertice)
 {
 	if (adjacencyList.find(vertice) == adjacencyList.end())
 	{
 		adjacencyList[vertice];
-		return true;
+		return code_error::no_error;
 	}
 	else
-	{
-		return false;
-	}
+		return code_error::vertice_exists;
 }
 
 uint8_t Graph::ChangeWeight(const string& startVertice, const string& endVertice, const int32_t& weight)
@@ -76,7 +76,7 @@ uint8_t Graph::ChangeWeight(const string& startVertice, const string& endVertice
 	adjacencyList[startVertice][endVertice] = weight;
 	if (!isOriented)
 		adjacencyList[endVertice][startVertice] = weight;
-	return code_error::replacement;	
+	return code_error::no_error;	
 }
 
 uint8_t Graph::AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight)
@@ -100,7 +100,7 @@ uint8_t Graph::AddEdge(const string& startVertice, const string& endVertice, con
 	return code_error::no_error;
 }
 
-bool Graph::RemoveVertice(const string& removedVertice)
+uint8_t Graph::RemoveVertice(const string& removedVertice)
 {
 	if (adjacencyList.find(removedVertice) != adjacencyList.end())
 	{
@@ -112,16 +112,16 @@ bool Graph::RemoveVertice(const string& removedVertice)
 		}
 		adjacencyList.erase(removedVertice);
 		//success
-		return true;
+		return code_error::no_error;
 	}
 	else
 	{
 		//fail
-		return false;
+		return code_error::no_vertice1;
 	}
 }
 
-bool Graph::RemoveEdge(const string& startVertice, const string& endVertice)
+uint8_t Graph::RemoveEdge(const string& startVertice, const string& endVertice)
 {
 	if (adjacencyList[startVertice].find(endVertice) != adjacencyList[startVertice].end())
 	{
@@ -131,13 +131,10 @@ bool Graph::RemoveEdge(const string& startVertice, const string& endVertice)
 			adjacencyList[endVertice].erase(startVertice);
 		}
 		//success
-		return true;
+		return no_error;
 	}
 	else
-	{
-		//fail
-		return false;
-	}
+		return code_error::no_edge;
 }
 
 void Graph::Save(string fileName)
