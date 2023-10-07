@@ -14,9 +14,11 @@ string_code Hashing(std::string const& inString) {
 	if (inString == "6") return changeWeight;
 	if (inString == "7") return saveGraph;
 
-	if (inString == "T1") return task1;
 	if (inString == "T2") return task2;
 	if (inString == "T3") return task3;
+	if (inString == "T4") return task4;
+	if (inString == "T5") return task5;
+	if (inString == "T6") return task6;
 
 	if (inString == "h") return help;
 	if (inString == "q") return quit;
@@ -33,9 +35,11 @@ void CommandMessage()
 		<< "6 - Change edge's weight\n"
 		<< "7 - Save graph\n"
 		<< '\n'
-		<< "T1 - task 1\n"
 		<< "T2 - task 2\n"
 		<< "T3 - task 3\n"
+		<< "T4 - task 4\n"
+		<< "T5 - task 5\n"
+		<< "T6 - task 6\n"
 		<< '\n'
 		<< "'h' to print this message\n"
 		<< "'q' to exit program\n";

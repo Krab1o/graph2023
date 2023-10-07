@@ -15,9 +15,11 @@ enum string_code
 	changeWeight,
 	saveGraph,
 
-	task1 = 10,
-	task2,
+	task2 = 10,
 	task3,
+	task4,
+	task5,
+	task6,
 
 	help = 20,
 	quit

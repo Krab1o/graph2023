@@ -9,7 +9,7 @@
 
 using std::cin;
 using std::getline;
-const string DATA_FILE1 = "data4.json";
+const string DATA_FILE1 = "data6.json";
 const string DATA_FILE2 = "data5.json";
 
 int main()
@@ -69,14 +69,20 @@ int main()
 			break;
 
 
-		case string_code::task1:
-			task1_14(graph);
-			break;
 		case string_code::task2:
-			task2_9(graph);
+			task2_14(graph);
 			break;
 		case string_code::task3:
-			task3_10(graph, graph2);
+			task3_9(graph);
+			break;
+		case string_code::task4:
+			task4_10(graph, graph2);
+			break;
+		case string_code::task5:
+			task5_2(graph);
+			break;
+		case string_code::task6:
+			task6_20(graph);
 			break;
 
 		case string_code::help:
