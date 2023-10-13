@@ -2,7 +2,7 @@
     "orient": true,
     "vertices": {
         "a": {
-            "e": 1
+            "e": 3
         },
         "b": {
             "a": 1

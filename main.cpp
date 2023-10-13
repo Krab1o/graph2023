@@ -10,7 +10,7 @@
 using std::cin;
 using std::getline;
 const string DATA_FILE1 = "data6.json";
-const string DATA_FILE2 = "data5.json";
+const string DATA_FILE2 = "data4.json";
 
 int main()
 {
