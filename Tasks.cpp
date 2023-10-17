@@ -216,3 +216,68 @@ void task6_20(Graph* graph)
 	if (!ans)
 		std::cout << "No paths between these 2 vertices!\n";
 }
+
+Graph* prim(Graph* graph, string root = "")
+{
+	Graph* tree = new Graph(graph->getOrientation());
+	auto list = graph->getAdjacencyList();
+
+	map<string, bool> used;
+	map<string, int> minEdge;
+	map<string, string> prevEdge;
+	for (auto it : list)
+	{
+		used[it.first] = false;
+		minEdge[it.first] = INT32_MAX;
+		prevEdge[it.first] = "";
+	}
+	if (root == "")
+	{
+		minEdge[list.begin()->first] = 0;
+		tree->AddVertice(list.begin()->first);
+	}
+	else
+	{
+		minEdge[root] = 0;
+		tree->AddVertice(root);
+	}
+	
+	for (auto it : list)
+	{
+		string v = "";
+		for (auto minVert : list)
+		{
+			if (!used[minVert.first] && (v == "" || minEdge[minVert.first] < minEdge[v]))
+				v = minVert.first;
+		}
+		if (v == "")
+		{
+			//no MST
+			std::cout << "No MST\n";
+			return new Graph();
+		}
+
+		used[v] = true;
+		if (prevEdge[v] != "")
+		{
+			auto treeList = tree->getAdjacencyList();
+			tree->AddVertice(v);
+			tree->AddEdge(v, prevEdge[v], list[v][prevEdge[v]]);
+			std::cout << v << ' ' << prevEdge[v] << '\n';
+		}
+
+		for (auto vert : list[v])
+			if (vert.second < minEdge[vert.first])
+			{
+				minEdge[vert.first] = vert.second;
+				prevEdge[vert.first] = v;
+			}
+	}
+	return tree;
+}
+
+Graph* task7_prim(Graph* graph)
+{
+	return prim(graph, "D");
+}
+

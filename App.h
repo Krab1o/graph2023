@@ -20,8 +20,13 @@ enum string_code
 	task4,
 	task5,
 	task6,
+	task7,
+	task8,
+	task9,
+	task10,
+	task11,
 
-	help = 20,
+	help = 30,
 	quit
 };
 

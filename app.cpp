@@ -19,6 +19,11 @@ string_code Hashing(std::string const& inString) {
 	if (inString == "T4") return task4;
 	if (inString == "T5") return task5;
 	if (inString == "T6") return task6;
+	if (inString == "T7") return task7;
+	if (inString == "T8") return task8;
+	if (inString == "T9") return task9;
+	if (inString == "T10") return task10;
+	if (inString == "T11") return task11;
 
 	if (inString == "h") return help;
 	if (inString == "q") return quit;
@@ -40,6 +45,11 @@ void CommandMessage()
 		<< "T4 - task 4\n"
 		<< "T5 - task 5\n"
 		<< "T6 - task 6\n"
+		<< "T7 - task 7\n"
+		<< "T8 - task 8\n"
+		<< "T9 - task 9\n"
+		<< "T10 - task 10\n"
+		<< "T11 - task 11\n"
 		<< '\n'
 		<< "'h' to print this message\n"
 		<< "'q' to exit program\n";
