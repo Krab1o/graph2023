@@ -137,6 +137,20 @@ uint8_t Graph::RemoveEdge(const string& startVertice, const string& endVertice)
 		return code_error::no_edge;
 }
 
+void Graph::Unweight()
+{
+	for (auto vert1 = adjacencyList.begin(); vert1 != adjacencyList.end(); vert1++)
+	{
+		for (auto vert2 = adjacencyList.begin(); vert2 != adjacencyList.end(); vert2++)
+		{
+			if (adjacencyList[vert1->first].find(vert2->first) != adjacencyList[vert1->first].end())
+			{
+				adjacencyList[vert1->first][vert2->first] = 1;
+			}
+		}
+	}
+}
+
 void Graph::Save(string fileName)
 {
 	json j = *this;

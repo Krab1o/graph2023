@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="algos.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="App.h" />
     <ClCompile Include="main.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Tasks.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="algos.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Tasks.h" />
   </ItemGroup>

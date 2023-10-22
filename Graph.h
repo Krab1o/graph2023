@@ -10,7 +10,7 @@ using json = nlohmann::json;
 using std::string;
 using std::map;
 using std::vector;
-using std::list; 
+//using std::list; 
 using std::pair;
 using std::ofstream;
 using std::ifstream;
@@ -54,6 +54,7 @@ public:
 	uint8_t RemoveEdge(const string& startVertice, const string& endVertice);
 
 	uint8_t ChangeWeight(const string& startVertice, const string& endVertice, const int32_t& weight);
+	void Unweight();
 
 	void Save(string fileName);
 private:

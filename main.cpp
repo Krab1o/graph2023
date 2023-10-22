@@ -62,6 +62,8 @@ int main()
 		case string_code::changeWeight:
 			ChangeWeight(graph);
 			break;
+		case string_code::unweightGraph:
+			Unweight(graph);
 
 		case string_code::saveGraph:
 			graph->Save(DATA_FILE1);
@@ -88,8 +90,10 @@ int main()
 			PrintVertices(task7_prim(graph));
 			break;
 		case string_code::task8:
+			task8_11(graph);
 			break;
 		case string_code::task9:
+			task9_17(graph);
 			break;
 		case string_code::task10:
 			break;

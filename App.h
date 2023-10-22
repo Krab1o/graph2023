@@ -14,6 +14,7 @@ enum string_code
 	removeEdge,
 	changeWeight,
 	saveGraph,
+	unweightGraph,
 
 	task2 = 10,
 	task3,
@@ -40,4 +41,4 @@ void RemoveVertice(Graph* graph);
 void AddEdge(Graph* graph);
 void RemoveEdge(Graph* graph);
 void ChangeWeight(Graph* graph);
-
+void Unweight(Graph* graph);

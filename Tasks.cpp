@@ -1,7 +1,11 @@
+#include<algorithm>
+
 #include "Tasks.h"
 #include "App.h"
+#include "algos.h"
 
 using std::string;
+using std::set;
 using std::getline;
 using std::cin;
 using std::cout;
@@ -99,71 +103,6 @@ void task4_10(Graph* graph1, Graph* graph2)
 	PrintVertices(newGraph);
 }
 
-void dfs(map<string, map<string, int32_t>>& list, const string& vertice, map<string, bool>& used)
-{	
-	used[vertice] = true;
-	for (auto it : list[vertice])
-	{
-		if (!used[it.first])
-		{
-			dfs(list, it.first, used);
-		}
-	}
-}
-
-void dfs_modified(
-	map<string, map<string, int32_t>>& list,
-	const string& current, 
-	const string& end, 
-	map<string, bool>& used,
-	vector<string>& path,
-	int32_t& counter)
-{
-	if (current == end)
-	{
-		for (auto it = path.begin(); it != path.end(); it++)
-		{
-			std::cout << *it << "->";
-		}
-		++counter;
-		std::cout << end << '\n';
-		return;
-	}
-		
-	used[current] = true;
-	for (auto it : list[current])
-	{
-		if (!used[it.first])
-		{
-			path.push_back(current);
-			dfs_modified(list, it.first, end, used, path, counter);
-			path.pop_back();
-		}
-	}
-	used[current] = false;
-}
-
-void bfs(map<string, map<string, int32_t>>& list, const string& vertice, map<string, bool>& used)
-{
-	string cur;
-	std::queue<string> q;
-	used[vertice] = true;
-	q.push(vertice);
-	while (!q.empty())
-	{
-		cur = q.front();
-		q.pop();
-		for (auto it : list[cur])
-		{
-			if (!used[it.first])
-			{
-				used[it.first] = true;
-				q.push(it.first);
-			}
-		}
-	}
-}
-
 void task5_2(Graph* graph)
 {
 	string vertice;
@@ -217,67 +156,74 @@ void task6_20(Graph* graph)
 		std::cout << "No paths between these 2 vertices!\n";
 }
 
-Graph* prim(Graph* graph, string root = "")
-{
-	Graph* tree = new Graph(graph->getOrientation());
-	auto list = graph->getAdjacencyList();
-
-	map<string, bool> used;
-	map<string, int> minEdge;
-	map<string, string> prevEdge;
-	for (auto it : list)
-	{
-		used[it.first] = false;
-		minEdge[it.first] = INT32_MAX;
-		prevEdge[it.first] = "";
-	}
-	if (root == "")
-	{
-		minEdge[list.begin()->first] = 0;
-		tree->AddVertice(list.begin()->first);
-	}
-	else
-	{
-		minEdge[root] = 0;
-		tree->AddVertice(root);
-	}
-	
-	for (auto it : list)
-	{
-		string v = "";
-		for (auto minVert : list)
-		{
-			if (!used[minVert.first] && (v == "" || minEdge[minVert.first] < minEdge[v]))
-				v = minVert.first;
-		}
-		if (v == "")
-		{
-			//no MST
-			std::cout << "No MST\n";
-			return new Graph();
-		}
-
-		used[v] = true;
-		if (prevEdge[v] != "")
-		{
-			auto treeList = tree->getAdjacencyList();
-			tree->AddVertice(v);
-			tree->AddEdge(v, prevEdge[v], list[v][prevEdge[v]]);
-			std::cout << v << ' ' << prevEdge[v] << '\n';
-		}
-
-		for (auto vert : list[v])
-			if (vert.second < minEdge[vert.first])
-			{
-				minEdge[vert.first] = vert.second;
-				prevEdge[vert.first] = v;
-			}
-	}
-	return tree;
-}
-
 Graph* task7_prim(Graph* graph)
 {
 	return prim(graph, "D");
+}
+
+void task8_11(Graph* graph)
+{
+	map<string, map<string, int32_t>> minimalDistance;
+	auto list = graph->getAdjacencyList();
+	for (auto vert : list)
+	{
+		minimalDistance[vert.first] = dijkstra(graph, vert.first);
+	}
+	map<string, int32_t> eccentricity;
+	int32_t radius = INT32_MAX;
+	for (auto vert : minimalDistance)
+	{
+		eccentricity[vert.first] = std::max_element(vert.second.begin(), vert.second.end(), 
+			[&](const auto p1, const auto p2) {return p1.second < p2.second; })->second;
+		radius = std::min(eccentricity[vert.first], radius);
+	}
+	
+	if (radius == INT32_MAX)
+	{
+		std::cout << "No center vertice in graph (graph is not connected)\n";
+		return;
+	}
+
+	for (auto vert : eccentricity)
+	{
+		if (vert.second == radius)
+			std::cout << vert.first << ' ';
+	}
+	cout << '\n';
+	return;
+}
+
+void task9_17(Graph* graph)
+{
+	auto floydRes = floyd(graph);
+	map<string, map<string, int32_t>> minimalDistance = floydRes.first;
+	map<string, map<string, string>> pathVertices = floydRes.second;
+
+	auto list = graph->getAdjacencyList();
+	std::stack<string> path;
+	for (auto vert1 : list)
+	{
+		for (auto vert2 : list)
+		{
+			cout << vert1.first << "->" << vert2.first << ": ";
+			if (minimalDistance[vert1.first][vert2.first] == INT32_MAX)
+			{
+				cout << "No path between these vertices\n";
+			}
+			else
+			{
+				WayBack(vert1.first, vert2.first, path, pathVertices);
+				cout << path.top();
+				path.pop();
+				while (!path.empty())
+				{
+					cout << "->" << path.top();
+					path.pop();
+				}
+				cout << " (" << minimalDistance[vert1.first][vert2.first] << ")" << '\n';
+			}
+		}
+		cout << '\n';
+	}
 }
 

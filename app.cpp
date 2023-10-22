@@ -13,6 +13,7 @@ string_code Hashing(std::string const& inString) {
 	if (inString == "5") return removeEdge;
 	if (inString == "6") return changeWeight;
 	if (inString == "7") return saveGraph;
+	if (inString == "8") return unweightGraph;
 
 	if (inString == "T2") return task2;
 	if (inString == "T3") return task3;
@@ -39,6 +40,7 @@ void CommandMessage()
 		<< "5 - Remove edge\n"
 		<< "6 - Change edge's weight\n"
 		<< "7 - Save graph\n"
+		<< "8 - Unweight graph\n"
 		<< '\n'
 		<< "T2 - task 2\n"
 		<< "T3 - task 3\n"
@@ -224,4 +226,10 @@ void ChangeWeight(Graph* graph)
 		std::cout << "Weight changed successfully\n";
 		break;
 	}
+}
+
+void Unweight(Graph* graph)
+{
+	graph->Unweight();
+	std::cout << "Weight of all edges changed to 1\n";
 }
