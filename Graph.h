@@ -10,7 +10,6 @@ using json = nlohmann::json;
 using std::string;
 using std::map;
 using std::vector;
-//using std::list; 
 using std::pair;
 using std::ofstream;
 using std::ifstream;
@@ -42,11 +41,13 @@ public:
 	Graph(const Graph& copiedValue);
 	Graph(map<string, map<string, int32_t>>, bool isOriented);
 
-	const map<string, map<string, int32_t>> getAdjacencyList() const;
-	bool getOrientation();
+	const map<string, map<string, int32_t>> GetAdjacencyList() const;
+	bool GetOrientation();
+	void ChangeOrientation();
+
 	bool isVertice(string s);
 	bool isEdge(string s1, string s2);
-
+	
 	static graph_orientation Hashing(string const& inString);
 
 	uint8_t AddVertice(const string& value);

@@ -89,7 +89,7 @@ bool is_number(const std::string& s)
 
 void PrintVertices(Graph* graph)
 {
-	auto adjacencyList = graph->getAdjacencyList();
+	auto adjacencyList = graph->GetAdjacencyList();
 
 	for (auto& list : adjacencyList)
 	{

@@ -30,14 +30,19 @@ Graph::Graph(map <string, map<string, int32_t>> list, bool isOriented)
 }
 
 //getters
-const map<string, map<string, int32_t>> Graph::getAdjacencyList() const
+const map<string, map<string, int32_t>> Graph::GetAdjacencyList() const
 {
 	return adjacencyList;
 }
 
-bool Graph::getOrientation()
+bool Graph::GetOrientation()
 {
 	return isOriented;
+}
+
+void Graph::ChangeOrientation()
+{
+	isOriented = !isOriented;
 }
 
 bool Graph::isVertice(string s)
@@ -47,9 +52,9 @@ bool Graph::isVertice(string s)
 
 bool Graph::isEdge(string s1, string s2)
 {
-	return adjacencyList.find(s1) != adjacencyList.end()
-		&& adjacencyList[s1].find(s2) != adjacencyList[s2].end();
+	return adjacencyList[s1].find(s2) != adjacencyList[s1].end();
 }
+
 
 Graph::graph_orientation Graph::Hashing(std::string const& inString)
 {
@@ -60,7 +65,7 @@ Graph::graph_orientation Graph::Hashing(std::string const& inString)
 //methods
 uint8_t Graph::AddVertice(const string& vertice)
 {
-	if (adjacencyList.find(vertice) == adjacencyList.end())
+	if (!isVertice(vertice))
 	{
 		adjacencyList[vertice];
 		return code_error::no_error;
@@ -72,15 +77,15 @@ uint8_t Graph::AddVertice(const string& vertice)
 uint8_t Graph::ChangeWeight(const string& startVertice, const string& endVertice, const int32_t& weight)
 {
 	//fail: no first vertice
-	if (adjacencyList.find(startVertice) == adjacencyList.end())
+	if (!isVertice(startVertice))
 		return code_error::no_vertice1;
 
 	//fail: no second vertice
-	if (adjacencyList.find(endVertice) == adjacencyList.end())
+	if (!isVertice(endVertice))
 		return code_error::no_vertice2;
 
 	//fail: no such edge
-	if (adjacencyList[startVertice].find(endVertice) == adjacencyList[startVertice].end())
+	if (!isEdge(startVertice, endVertice))
 		return code_error::no_edge;
 
 	//success
@@ -93,15 +98,15 @@ uint8_t Graph::ChangeWeight(const string& startVertice, const string& endVertice
 uint8_t Graph::AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight)
 {
 	//fail: no first vertice
-	if (adjacencyList.find(startVertice) == adjacencyList.end())
+	if (!isVertice(startVertice))
 		return code_error::no_vertice1;
 
 	//fail: no second vertice
-	if (adjacencyList.find(endVertice) == adjacencyList.end())
+	if (!isVertice(endVertice))
 		return code_error::no_vertice2;
 
 	//fail: edge already exists
-	if (adjacencyList[startVertice].find(endVertice) != adjacencyList[startVertice].end())
+	if (isEdge(startVertice, endVertice))
 		return code_error::edge_exists;
 
 	//success
@@ -113,23 +118,18 @@ uint8_t Graph::AddEdge(const string& startVertice, const string& endVertice, con
 
 uint8_t Graph::RemoveVertice(const string& removedVertice)
 {
-	if (adjacencyList.find(removedVertice) != adjacencyList.end())
-	{
-		//cleaning other vertices and their edges
-		for (auto vert : adjacencyList)
-		{
-			this->RemoveEdge(vert.first, removedVertice);
-			this->RemoveEdge(removedVertice, vert.first);
-		}
-		adjacencyList.erase(removedVertice);
-		//success
-		return code_error::no_error;
-	}
-	else
-	{
-		//fail
+	//fail: no such vertice
+	if (!isVertice(removedVertice))
 		return code_error::no_vertice1;
+
+	//success, cleaning other vertices and their edges
+	for (auto vert : adjacencyList)
+	{
+		this->RemoveEdge(vert.first, removedVertice);
+		this->RemoveEdge(removedVertice, vert.first);
 	}
+	adjacencyList.erase(removedVertice);
+	return code_error::no_error;
 }
 
 uint8_t Graph::RemoveEdge(const string& startVertice, const string& endVertice)
@@ -154,10 +154,8 @@ void Graph::Unweight()
 	{
 		for (auto vert2 = adjacencyList.begin(); vert2 != adjacencyList.end(); vert2++)
 		{
-			if (adjacencyList[vert1->first].find(vert2->first) != adjacencyList[vert1->first].end())
-			{
+			if (isEdge(vert1->first, vert2->first))
 				adjacencyList[vert1->first][vert2->first] = 1;
-			}
 		}
 	}
 }

@@ -27,3 +27,5 @@ pair<map<string, map<string, int32_t>>,
 	map<string, map<string, string>>> floyd(Graph* graph);
 
 std::tuple<bool, map<string, int32_t>, map<string, string>> ford_bellman(Graph* graph, string root);
+
+int ford_fulkerson(Graph* graph, string source, string target);

@@ -17,7 +17,7 @@ void task2_14(Graph* graph)
 	std::cout << "Enter vertice to print: ";
 	getline(cin, vertice);
 
-	auto list = graph->getAdjacencyList();
+	auto list = graph->GetAdjacencyList();
 	auto map = list[vertice];
 	if (map.empty())
 	{
@@ -41,7 +41,7 @@ void task3_9(Graph* graph)
 	std::cout << "Enter vertice: ";
 	getline(cin, vertice);
 
-	auto list = graph->getAdjacencyList();
+	auto list = graph->GetAdjacencyList();
 	if (list.find(vertice) == list.end())
 	{
 		std::cout << "No such vertice in graph\n";
@@ -66,14 +66,14 @@ void task3_9(Graph* graph)
 
 void task4_10(Graph* graph1, Graph* graph2)
 {
-	if (graph1->getOrientation() != graph2->getOrientation())
+	if (graph1->GetOrientation() != graph2->GetOrientation())
 	{
 		std::cout << "Graphs are incompatible\n";
 		return;
 	}
 
-	auto list1 = graph1->getAdjacencyList();
-	auto list2 = graph2->getAdjacencyList();
+	auto list1 = graph1->GetAdjacencyList();
+	auto list2 = graph2->GetAdjacencyList();
 
 	map<string, map<string, int32_t>> newMap;
 	for (auto it : list1)
@@ -99,7 +99,7 @@ void task4_10(Graph* graph1, Graph* graph2)
 
 		}
 	}
-	Graph* newGraph = new Graph(newMap, graph1->getOrientation());
+	Graph* newGraph = new Graph(newMap, graph1->GetOrientation());
 	PrintVertices(newGraph);
 }
 
@@ -109,7 +109,7 @@ void task5_2(Graph* graph)
 	std::cout << "Enter target vertice: ";
 	getline(cin, vertice);
 	map<string, bool> used;
-	auto list = graph->getAdjacencyList();
+	auto list = graph->GetAdjacencyList();
 	for (auto it : list)
 	{
 		used[it.first] = false;
@@ -128,7 +128,7 @@ void task6_20(Graph* graph)
 {
 	string startVertice;
 	string endVertice;
-	auto list = graph->getAdjacencyList();
+	auto list = graph->GetAdjacencyList();
 	std::cout << "Enter start vertice: ";
 	getline(cin, startVertice);
 	std::cout << "Enter end vertice: ";
@@ -164,7 +164,7 @@ Graph* task7_prim(Graph* graph)
 void task8_11(Graph* graph)
 {
 	map<string, map<string, int32_t>> minimalDistance;
-	auto list = graph->getAdjacencyList();
+	auto list = graph->GetAdjacencyList();
 	for (auto vert : list)
 	{
 		minimalDistance[vert.first] = dijkstra(graph, vert.first);
@@ -199,7 +199,7 @@ void task9_17(Graph* graph)
 	map<string, map<string, int32_t>> minimalDistance = floydRes.first;
 	map<string, map<string, string>> pathVertices = floydRes.second;
 
-	auto list = graph->getAdjacencyList();
+	auto list = graph->GetAdjacencyList();
 	std::stack<string> path;
 	for (auto vert1 : list)
 	{
@@ -235,17 +235,27 @@ void task10_1(Graph* graph)
 	string L;
 	std::cout << "Enter start vertice: ";
 	getline(cin, vertice1);
+	if (!graph->isVertice(vertice1))
+	{
+		cout << "No such vertice in graph!\n";
+		return;
+	}
 	std::cout << "Enter end vertice: ";
 	getline(cin, vertice2);
+	if (!graph->isVertice(vertice2))
+	{
+		cout << "No such vertice in graph!\n";
+		return;
+	}
 	std::cout << "Enter maximum path length: ";
 	getline(cin, L);
-	while (!is_number(L))
+	if (!is_number(L))
 	{
-		std::cout << "Wrong weight value! Enter integer: ";
-		getline(cin, L);
+		cout << "Wrong weight value! Enter integer: ";
+		return;
 	}
 
-	auto list = graph->getAdjacencyList();
+	auto list = graph->GetAdjacencyList();
 	map<string, map<string, int32_t>> minimalDistance;
 	map<string, map<string, string>> pathVertices;
 	for (auto vert : list)
@@ -284,5 +294,28 @@ void task10_1(Graph* graph)
 		cout << "Path shorter than " << L << " between " << vertice1 << " and " << vertice2
 			<< " does not exist.\n";
 	}
+}
+
+void task11_net(Graph* graph)
+{
+	string vertice1;
+	string vertice2;
+	std::cout << "Enter source vertice: ";
+	getline(cin, vertice1);
+	std::cout << "Enter target vertice: ";
+	getline(cin, vertice2);
+	if (vertice1 == vertice2)
+		cout << "Infinite flow (source and targets are equal)\n";
+	if (!graph->isVertice(vertice1))
+	{
+		cout << "No vertice 1 in graph\n";
+		return;
+	}
+	if (!graph->isVertice(vertice2))
+	{
+		cout << "No vertice 2 in graph\n";
+		return;
+	}
+	cout << "Maximum flow is " << ford_fulkerson(graph, vertice1, vertice2) << ".\n";
 }
 

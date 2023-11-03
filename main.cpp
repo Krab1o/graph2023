@@ -9,7 +9,7 @@
 
 using std::cin;
 using std::getline;
-const string DATA_FILE1 = "task9_3.json";
+const string DATA_FILE1 = "task11_1.json";
 const string DATA_FILE2 = "data4.json";
 
 int main()
@@ -38,32 +38,24 @@ int main()
 		case string_code::printVertices:
 			PrintVertices(graph);
 			break;
-
-			//add enum
 		case string_code::addVertice:
 			AddVertice(graph);
 			break;
-
-			//add enum
 		case string_code::removeVertice:
 			RemoveVertice(graph);
 			break;
-
 		case string_code::addEdge:
 			AddEdge(graph);
 			break;
-
-			//add enum
 		case string_code::removeEdge:
 			RemoveEdge(graph);
 			break;
-
-			//Think of uniting with AddEdge
 		case string_code::changeWeight:
 			ChangeWeight(graph);
 			break;
 		case string_code::unweightGraph:
 			Unweight(graph);
+			break;
 
 		case string_code::saveGraph:
 			graph->Save(DATA_FILE1);
@@ -99,7 +91,7 @@ int main()
 			task10_1(graph);
 			break;
 		case string_code::task11:
-			std::cout << "Not implemented\n";
+			task11_net(graph);
 			break;
 
 		case string_code::help:
