@@ -40,6 +40,17 @@ bool Graph::getOrientation()
 	return isOriented;
 }
 
+bool Graph::isVertice(string s)
+{
+	return !(adjacencyList.find(s) == adjacencyList.end());
+}
+
+bool Graph::isEdge(string s1, string s2)
+{
+	return adjacencyList.find(s1) != adjacencyList.end()
+		&& adjacencyList[s1].find(s2) != adjacencyList[s2].end();
+}
+
 Graph::graph_orientation Graph::Hashing(std::string const& inString)
 {
 	if (inString == "0") return graph_orientation::undirected;

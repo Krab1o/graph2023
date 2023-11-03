@@ -9,7 +9,7 @@
 
 using std::cin;
 using std::getline;
-const string DATA_FILE1 = "data7.json";
+const string DATA_FILE1 = "task9_3.json";
 const string DATA_FILE2 = "data4.json";
 
 int main()
@@ -96,8 +96,10 @@ int main()
 			task9_17(graph);
 			break;
 		case string_code::task10:
+			task10_1(graph);
 			break;
 		case string_code::task11:
+			std::cout << "Not implemented\n";
 			break;
 
 		case string_code::help:

@@ -17,3 +17,4 @@ void task6_20(Graph* graph);
 Graph* task7_prim(Graph* graph);
 void task8_11(Graph* graph);
 void task9_17(Graph* graph);
+void task10_1(Graph* graph);

@@ -226,3 +226,40 @@ void WayBack(const string& startSource, const string& targetSource, std::stack<s
 	WayBack(startSource, pathVertices[startSource][targetSource], path, 
 		pathVertices);
 }
+
+std::tuple<bool, map<string, int32_t>, map<string, string>> ford_bellman(Graph* graph, string root)
+{
+	auto list = graph->getAdjacencyList();
+	map<string, int32_t> minimalDistance;
+	map<string, string> pathVertices;
+
+	for (auto vert1 : list)
+	{
+		pathVertices[vert1.first] = "";
+		minimalDistance[vert1.first] = vert1.first == root ? 0 : INT32_MAX;
+	}
+
+	int32_t newDistance;
+	for (int k = 1; k < list.size() + 1; k++)
+	{
+		for (auto u : list)
+		{
+			for (auto v : list[u.first])
+			{
+				if (minimalDistance[u.first] == INT32_MAX)
+					continue;
+				newDistance = minimalDistance[u.first] + list[u.first][v.first];
+				if (newDistance < minimalDistance[v.first])
+				{
+					if (k == list.size())
+					{
+						return std::make_tuple(true, minimalDistance, pathVertices);
+					}
+					minimalDistance[v.first] = newDistance;
+					pathVertices[v.first] = u.first;	
+				}
+			}
+		}
+	}
+	return std::make_tuple(false, minimalDistance, pathVertices);
+}

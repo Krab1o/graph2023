@@ -25,3 +25,5 @@ void WayBack(const string& startSource, const string& targetSource, std::stack<s
 map<string, int32_t> dijkstra(Graph* graph, string root);
 pair<map<string, map<string, int32_t>>,
 	map<string, map<string, string>>> floyd(Graph* graph);
+
+std::tuple<bool, map<string, int32_t>, map<string, string>> ford_bellman(Graph* graph, string root);

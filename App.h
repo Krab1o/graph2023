@@ -35,6 +35,7 @@ string_code Hashing(std::string const& inString);
 void CommandMessage();
 Graph* CreateGraph(string& command);
 
+bool is_number(const string& s);
 void PrintVertices(Graph* graph);
 void AddVertice(Graph* graph);
 void RemoveVertice(Graph* graph);

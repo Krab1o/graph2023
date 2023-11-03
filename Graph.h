@@ -44,6 +44,8 @@ public:
 
 	const map<string, map<string, int32_t>> getAdjacencyList() const;
 	bool getOrientation();
+	bool isVertice(string s);
+	bool isEdge(string s1, string s2);
 
 	static graph_orientation Hashing(string const& inString);
 

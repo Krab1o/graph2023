@@ -68,11 +68,11 @@ Graph* CreateGraph(string& command)
 		switch (Graph::Hashing(command))
 		{
 		case Graph::undirected:
-			std::cout << "Created a new directed graph\n";
-			return new Graph(true);
-		case Graph::directed:
 			std::cout << "Created a new undirected graph\n";
 			return new Graph(false);
+		case Graph::directed:
+			std::cout << "Created a new directed graph\n";
+			return new Graph(true);
 		default:
 			break;
 		}
@@ -83,7 +83,7 @@ Graph* CreateGraph(string& command)
 bool is_number(const std::string& s)
 {
 	std::string::const_iterator it = s.begin();
-	while (it != s.end() && std::isdigit(*it)) ++it;
+	while (it != s.end() && (std::isdigit(*it) || (*it) == '-')) ++it;
 	return !s.empty() && it == s.end();
 }
 
@@ -134,6 +134,7 @@ void RemoveVertice(Graph* graph)
 	}
 }
 
+//TODO: переписать is_number
 void AddEdge(Graph* graph)
 {
 	string vertice1;

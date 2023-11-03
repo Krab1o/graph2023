@@ -227,3 +227,62 @@ void task9_17(Graph* graph)
 	}
 }
 
+void task10_1(Graph* graph)
+{
+	//ADD VERTICE CHECKING
+	string vertice1;
+	string vertice2;
+	string L;
+	std::cout << "Enter start vertice: ";
+	getline(cin, vertice1);
+	std::cout << "Enter end vertice: ";
+	getline(cin, vertice2);
+	std::cout << "Enter maximum path length: ";
+	getline(cin, L);
+	while (!is_number(L))
+	{
+		std::cout << "Wrong weight value! Enter integer: ";
+		getline(cin, L);
+	}
+
+	auto list = graph->getAdjacencyList();
+	map<string, map<string, int32_t>> minimalDistance;
+	map<string, map<string, string>> pathVertices;
+	for (auto vert : list)
+	{
+		auto algRes = ford_bellman(graph, vert.first);
+		if (std::get<0>(algRes) == true)
+		{
+			cout << "Negative cycle found, algorithm terminated\n";
+			return;
+		}
+		else
+		{
+			minimalDistance[vert.first] = std::get<1>(algRes);
+			if (vert.first == vertice1)
+				pathVertices[vert.first] = std::get<2>(algRes);
+		}
+	}
+	
+	if (minimalDistance[vertice1][vertice2] < std::stoi(L))
+	{
+		cout << "Path shorter than " << L << " between " << vertice1 << " and " << vertice2
+			<< " exists:\n";
+		std::stack<string> path;
+		WayBack(vertice1, vertice2, path, pathVertices);
+		cout << path.top();
+		path.pop();
+		while (!path.empty())
+		{
+			cout << "->" << path.top();
+			path.pop();
+		}
+		cout << " (" << minimalDistance[vertice1][vertice2] << ")" << '\n';
+	}
+	else
+	{
+		cout << "Path shorter than " << L << " between " << vertice1 << " and " << vertice2
+			<< " does not exist.\n";
+	}
+}
+
