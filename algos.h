@@ -17,7 +17,7 @@ void dfs_modified(
 	int32_t& counter);
 void dfs(map<string, map<string, int32_t>>& list, const string& vertice, map<string, bool>& used);
 void bfs(map<string, map<string, int32_t>>& list, const string& vertice, map<string, bool>& used);
-Graph* prim(Graph* graph, string root);
+Graph* prim(Graph* graph, string root = "");
 
 void WayBack(const string& startSource, const string& targetSource, std::stack<string>& path,
 	map<string, map<string, string>>& pathVertices);

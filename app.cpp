@@ -134,7 +134,6 @@ void RemoveVertice(Graph* graph)
 	}
 }
 
-//TODO: переписать is_number
 void AddEdge(Graph* graph)
 {
 	string vertice1;

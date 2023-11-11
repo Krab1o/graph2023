@@ -156,9 +156,13 @@ void task6_20(Graph* graph)
 		std::cout << "No paths between these 2 vertices!\n";
 }
 
-Graph* task7_prim(Graph* graph)
+void task7_prim(Graph* graph)
 {
-	return prim(graph, "D");
+	Graph* tree = prim(graph);
+	if (tree == nullptr)
+		std::cout << "No spanning tree exists (graph should be connected and undirected)\n";
+	else
+		PrintVertices(tree);
 }
 
 void task8_11(Graph* graph)
@@ -198,6 +202,15 @@ void task9_17(Graph* graph)
 	auto floydRes = floyd(graph);
 	map<string, map<string, int32_t>> minimalDistance = floydRes.first;
 	map<string, map<string, string>> pathVertices = floydRes.second;
+
+	for (auto vert : minimalDistance)
+	{
+		if (vert.second[vert.first] < 0)
+		{
+			cout << "Negative cycle found, algorithm terminated\n";
+			return;
+		}
+	}
 
 	auto list = graph->GetAdjacencyList();
 	std::stack<string> path;

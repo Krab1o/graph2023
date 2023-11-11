@@ -7,9 +7,7 @@
 #include "App.h"
 #include "Tasks.h"
 
-using std::cin;
-using std::getline;
-const string DATA_FILE1 = "task11_1.json";
+const string DATA_FILE1 = "task11_2.json";
 const string DATA_FILE2 = "data4.json";
 
 int main()
@@ -32,7 +30,7 @@ int main()
 	while (true)
 	{
 		std::cout << "Command: ";
-		getline(cin, command);
+		std::getline(std::cin, command);
 		switch (Hashing(command))
 		{
 		case string_code::printVertices:
@@ -79,7 +77,7 @@ int main()
 			task6_20(graph);
 			break;
 		case string_code::task7:
-			PrintVertices(task7_prim(graph));
+			task7_prim(graph);
 			break;
 		case string_code::task8:
 			task8_11(graph);
@@ -97,7 +95,6 @@ int main()
 		case string_code::help:
 			CommandMessage();
 			break;
-
 		case string_code::quit:
 			graph->Save(DATA_FILE1);
 			return 0;

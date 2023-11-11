@@ -65,9 +65,11 @@ void bfs(map<string, map<string, int32_t>>& list, const string& vertice, map<str
 	}
 }
 
-Graph* prim(Graph* graph, string root = "")
+Graph* prim(Graph* graph, string root)
 {
 	Graph* tree = new Graph(graph->GetOrientation());
+	if (graph->GetOrientation() == true)
+		return nullptr;
 	auto list = graph->GetAdjacencyList();
 
 	map<string, bool> used;
@@ -79,6 +81,15 @@ Graph* prim(Graph* graph, string root = "")
 		minEdge[it.first] = INT32_MAX;
 		prevEdge[it.first] = "";
 	}
+
+	dfs(list, list.begin()->first, used);
+	for (auto it : used)
+	{
+		if (used[it.first] == false)
+			return nullptr;
+		used[it.first] = false;
+	}
+
 	if (root == "")
 	{
 		minEdge[list.begin()->first] = 0;
@@ -89,6 +100,8 @@ Graph* prim(Graph* graph, string root = "")
 		minEdge[root] = 0;
 		tree->AddVertice(root);
 	}
+
+	
 
 	for (auto it : list)
 	{
