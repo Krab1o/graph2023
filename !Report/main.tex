@@ -1,0 +1,925 @@
+\documentclass[otchet]{SCWorks}
+% Тип обучения (одно из значений):
+%    bachelor   - бакалавриат (по умолчанию)
+%    spec       - специальность
+%    master     - магистратура
+% Форма обучения (одно из значений):
+%    och        - очное (по умолчанию)
+%    zaoch      - заочное
+% Тип работы (одно из значений):
+%    coursework - курсовая работа (по умолчанию)
+%    referat    - реферат
+%  * otchet     - универсальный отчет
+%  * nirjournal - журнал НИР
+%  * digital    - итоговая работа для цифровой кафдры
+%    diploma    - дипломная работа
+%    pract      - отчет о научно-исследовательской работе
+%    autoref    - автореферат выпускной работы
+%    assignment - задание на выпускную квалификационную работу
+%    review     - отзыв руководителя
+%    critique   - рецензия на выпускную работу
+% Включение шрифта
+%    times      - включение шрифта Times New Roman (если установлен)
+%                 по умолчанию выключен
+
+\usepackage{preamble}
+\captionsetup[figure]{font= normalsize, labelfont=normalsize}
+\renewcommand\theFancyVerbLine{\small\arabic{FancyVerbLine}}
+
+\begin{document}
+
+% Кафедра (в родительном падеже)
+\chair{информатики и программирования}
+
+% Тема работы
+\title{DevOps: его роль в современной разработке программного обеспечения}
+
+% Курс
+\course{3}
+
+% Группа
+\group{351}
+
+% Факультет (в родительном падеже) (по умолчанию "факультета КНиИТ")
+% \department{факультета КНиИТ}
+
+% Специальность/направление код - наименование
+% \napravlenie{02.03.02 "--- Фундаментальная информатика и информационные технологии}
+% \napravlenie{02.03.01 "--- Математическое обеспечение и администрирование информационных систем}
+% \napravlenie{09.03.01 "--- Информатика и вычислительная техника}
+\napravlenie{09.03.04 "--- Программная инженерия}
+% \napravlenie{10.05.01 "--- Компьютерная безопасность}
+
+% Для студентки. Для работы студента следующая команда не нужна.
+% \studenttitle{Студентки}
+
+% Фамилия, имя, отчество в родительном падеже
+\author{Устюшина Богдана Антоновича}
+
+% Заведующий кафедрой 
+\chtitle{доцент, к.\,ф.-м.\,н.}
+\chname{С.\,В.\,Миронов}
+
+% Руководитель ДПП ПП для цифровой кафедры (перекрывает заведующего кафедры)
+% \chpretitle{
+%     заведующий кафедрой математических основ информатики и олимпиадного\\
+%     программирования на базе МАОУ <<Ф"=Т лицей №1>>
+% }
+% \chtitle{г. Саратов, к.\,ф.-м.\,н., доцент}
+% \chname{Кондратова\, Ю.\,Н.}
+
+% Научный руководитель (для реферата преподаватель проверяющий работу)
+\satitle{доцент, к.\,п.\,н.} %должность, степень, звание
+\saname{М.\,С.\,Портенко}
+
+% Руководитель практики от организации (руководитель для цифровой кафедры)
+\patitle{доцент, к.\,ф.-м.\,н.}
+\paname{С.\,В.\,Миронов}
+
+% Руководитель НИР
+\nirtitle{доцент, к.\,п.\,н.} % степень, звание
+\nirname{В.\,А.\,Векслер}
+
+% Семестр (только для практики, для остальных типов работ не используется)
+\term{5}
+
+% Наименование практики (только для практики, для остальных типов работ не
+% используется)
+\practtype{учебная}
+
+% Продолжительность практики (количество недель) (только для практики, для
+% остальных типов работ не используется)
+\duration{2}
+
+% Даты начала и окончания практики (только для практики, для остальных типов
+% работ не используется)
+\practStart{01.07.2022}
+\practFinish{13.01.2023}
+
+% Год выполнения отчета
+\date{2023}
+
+\maketitle
+
+% Включение нумерации рисунков, формул и таблиц по разделам (по умолчанию -
+% нумерация сквозная) (допускается оба вида нумерации)
+% \secNumbering
+
+\tableofcontents
+
+% Раздел "Обозначения и сокращения". Может отсутствовать в работе
+% \abbreviations
+% \begin{description}
+%     \item ... "--- ...
+%     \item ... "--- ...
+% \end{description}
+
+% Раздел "Определения". Может отсутствовать в работе
+% \definitions
+
+% Раздел "Определения, обозначения и сокращения". Может отсутствовать в работе.
+% Если присутствует, то заменяет собой разделы "Обозначения и сокращения" и
+% "Определения"
+% \defabbr
+
+\intro
+
+Отчёт по теории графов. \textbf{Используемый язык} -- C++.
+
+\section{Задание 1: создание класса графов}
+
+В первом задании предлагалось создать свой собственный класс графов, в который входят:
+
+\begin{enumerate}
+\item Структуру хранения графа (список смежности или список рёбер)
+\item Конструкторы (пустой граф, граф из файла, конструктор-копию)
+\item Методы (добавления/удаления вершин, добавления/удаления рёбер или дуг, вывод списка смежности в файл, т.е. сохранения графа)
+\item Должны поддерживаться как ориентированные/неориентированные графы
+\item Должен быть создан минималистичный консольный интерфейс
+\end{enumerate}
+
+Весь код представлен в приложении \ref{Graph}.
+
+Структура хранения выбрана как словарь словарей (\texttt{map<map<string, int>\.>}): то есть у каждой вершины есть \texttt{map}, который соответствует вершинам, с которыми она смежна (в случае неориентированного графа) или вершинам, в которые идут дуги (в случае ориентированного графа). 
+
+Представлены конструкторы на основе:
+\begin{enumerate}
+\item Bool-переменной \texttt{isOriented}, которая определяет, является ли граф ориентированным или нет (поддержка различия двух графов);
+\item Файла, в котором граф представляется в json-формате с помощью библиотеки nlohmann-json;
+\item Ссылки на константное значение класса графа -- конструктор копирования.
+\end{enumerate}
+
+\textbf{Написать примеры создания графа}
+
+Также реализован независимый от класса графа консольный интерфейс (файлы \texttt{App.h} и \texttt{App.cpp}), функции которого потом используются в функции \texttt{main} в главном файле \texttt{main.cpp}.
+
+В нём созданы:
+\begin{enumerate}
+\item \texttt{enum string\_code} -- введённая пользователем строка на основе функции Hashing будет преобразовываться в номер для выполнения определённой команды.
+\item \texttt{CommandMessage()} -- выводит справку о поддерживаемых командах, появляется при старте программы и вызове функции \texttt{help} (h)
+\item \texttt{CreateGraph} -- интерфейс создания графа (вызывается при пустом файле, указанном в переменной \texttt{DATA\_FILE\_1} имени графа, используемой в главном файле \texttt{main.cpp}).
+\item Функция \texttt{PrintVertices} -- выводит все вершины графа в виде списка в консоли.
+\item Функция \texttt{AddVertice} -- добавляет вершину к текущему графу, в котором запущена программа.
+\item Функция \texttt{RemoveVertice} -- удаляет вершину из текущего графа.
+\item Функция \texttt{AddEdge} -- добавляет ребро/дугу к текущему графу.
+\item Функция \texttt{RemoveEdge} -- удаляет ребро/дугу у текущего графа.
+\item Функция \texttt{ChangeWeight} -- изменяет вес ребра в текущем графе.
+\item Функция \texttt{Unweight} -- изменяет вес всех рёбер на 1.
+\end{enumerate}
+
+Все исключительные ситуации (ребра при изменении веса или удалении не существует, не существует одной из вершин при добавлении ребра, добавление уже существующей вершины и прочие) обрабатываются внутри класса ещё на этапе выполнения метода классом графа. Методы интерфейса App просто вызывают для переданного им параметра (графа) методы, реализованные внутри класса графа, что позволяет перенести всю логику обработки некорректных ситуаций в класс графа.
+
+Также дополнительно в \texttt{App.cpp} существует метод \texttt{is_number}, проверяющий корректность введённого числа при вводе веса рёбер (они могут быть лишь целыми числами, положительными, отрицательным или нулём).
+
+Также для отделения от кода заданий и алгоритмов для них реализованы дополнительные файлы \texttt{Task.h}, \texttt{Task.cpp}, \texttt{Algos.h}, \texttt{Algos.cpp}.
+
+\section{Задание 2: Список смежности Ia}
+
+\textbf{Задание: Вывести все вершины орграфа, смежные с данной.}
+
+Реализация:
+
+\begin{minted}[linenos, breaklines=true, style=bw]{c++}
+void task2_14(Graph* graph)
+{
+	string vertice;
+	std::cout << "Enter vertice to print: ";
+	getline(cin, vertice);
+
+	auto list = graph->GetAdjacencyList();
+	auto map = list[vertice];
+	if (map.empty())
+	{
+		std::cout << "No adjacent vertices!\n";
+	}
+	else
+	{
+		std::cout << vertice << ": ";
+		for (auto& el : map)
+		{
+			std::cout << "(" << el.first << ", " << el.second << ") ";
+		}
+		std::cout << '\n';
+	}
+}
+\end{minted}
+
+Обычный перебор используемого map для получения всех соседних вершин.
+
+\section{Задание 3: Список смежности Ia}
+
+\begin{minted}[linenos, breaklines=true, style=bw]{c++}
+\end{minted}
+
+\section{Задание 4: Список смежности Ib: несколько графов}
+\section{Задание 5: Обходы графа II}
+\section{Задание 6: Обходы графа II}
+\section{Задание 7: Каркас III}
+\section{Задание 8: Веса IVc}
+\section{Задание 9: Веса IVc}
+\section{Задание 10: Веса IVc}
+\section{Задание 11: Максимальный поток}
+
+% Раздел "Заключение"
+
+\conclusion
+
+В этом реферате были рассмотрены основные инструменты DevOps инженера. 
+
+% Библиографический список, составленный вручную, без использования BibTeX
+%
+% \begin{thebibliography}{99}
+%   \bibitem{Ione} Источник 1.
+%   \bibitem{Itwo} Источник 2
+% \end{thebibliography}
+
+% Отобразить все источники. Даже те, на которые нет ссылок.
+\nocite{*}
+
+% Меняем inputencoding на лету, чтобы работать с библиографией в кодировке
+% `cp1251', в то время как остальной документ находится в кодировке `utf8'
+\inputencoding{cp1251}
+\bibliographystyle{gost780uv}
+\bibliography{thesis1}
+\inputencoding{utf8}
+
+\appendix
+\section{Файлы класса графов}
+\label{Graph}
+
+\textbf{Graph.h файл:}
+\begin{minted}[linenos, breaklines=true, style=bw]{c++}
+#pragma once
+
+#include <map>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
+using std::string;
+using std::map;
+using std::vector;
+using std::pair;
+using std::ofstream;
+using std::ifstream;
+
+class Graph
+{
+	friend void to_json(json& j, const Graph& graph);
+public:
+
+	enum graph_orientation
+	{
+		undirected = 0,
+		directed = 1
+	};
+
+	enum code_error
+	{
+		no_error = 0,
+
+		vertice_exists,
+		no_vertice1,
+		no_vertice2,
+		edge_exists,
+		no_edge
+	};
+
+	Graph(bool orient = true);
+	Graph(ifstream& file);
+	Graph(const Graph& copiedValue);
+	Graph(map<string, map<string, int32_t>>, bool isOriented);
+
+	const map<string, map<string, int32_t>> GetAdjacencyList() const;
+	bool GetOrientation();
+	void ChangeOrientation();
+
+	bool isVertice(string s);
+	bool isEdge(string s1, string s2);
+	
+	static graph_orientation Hashing(string const& inString);
+
+	uint8_t AddVertice(const string& value);
+	uint8_t AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight);
+
+	uint8_t RemoveVertice(const string& vertice);
+	uint8_t RemoveEdge(const string& startVertice, const string& endVertice);
+
+	uint8_t ChangeWeight(const string& startVertice, const string& endVertice, const int32_t& weight);
+	void Unweight();
+
+	void Save(string fileName);
+private:
+	map<string, map<string, int32_t>> adjacencyList;
+	bool isOriented;
+};
+\end{minted}
+
+\textbf{Graph.cpp файл:}
+
+\begin{minted}[linenos, breaklines=true, style=bw]{c++}
+#include "Graph.h"
+
+Graph::Graph(bool isOriented)
+{
+	this->isOriented = isOriented;
+}
+
+Graph::Graph(ifstream& file)
+{
+	json j;
+	file >> j;
+	this->isOriented = j["orient"];
+	for (auto& adjList : j["vertices"].items())
+	{
+		this->adjacencyList[adjList.key()] = j["vertices"][adjList.key()].get<map<string, int32_t>>();
+	}
+}
+
+Graph::Graph(const Graph& copiedValue)
+{
+	this->isOriented = copiedValue.isOriented;
+	this->adjacencyList = copiedValue.adjacencyList;
+}
+
+Graph::Graph(map <string, map<string, int32_t>> list, bool isOriented)
+{
+	this->adjacencyList = list;
+	this->isOriented = isOriented;
+}
+
+//getters
+const map<string, map<string, int32_t>> Graph::GetAdjacencyList() const
+{
+	return adjacencyList;
+}
+
+bool Graph::GetOrientation()
+{
+	return isOriented;
+}
+
+void Graph::ChangeOrientation()
+{
+	isOriented = !isOriented;
+}
+
+bool Graph::isVertice(string s)
+{
+	return !(adjacencyList.find(s) == adjacencyList.end());
+}
+
+bool Graph::isEdge(string s1, string s2)
+{
+	return adjacencyList[s1].find(s2) != adjacencyList[s1].end();
+}
+
+
+Graph::graph_orientation Graph::Hashing(std::string const& inString)
+{
+	if (inString == "0") 
+		return graph_orientation::undirected;
+	else 
+		return graph_orientation::directed;
+}
+
+//methods
+uint8_t Graph::AddVertice(const string& vertice)
+{
+	if (!isVertice(vertice))
+	{
+		adjacencyList[vertice];
+		return code_error::no_error;
+	}
+	else
+		return code_error::vertice_exists;
+}
+
+uint8_t Graph::ChangeWeight(const string& startVertice, const string& endVertice, const int32_t& weight)
+{
+	//fail: no first vertice
+	if (!isVertice(startVertice))
+		return code_error::no_vertice1;
+
+	//fail: no second vertice
+	if (!isVertice(endVertice))
+		return code_error::no_vertice2;
+
+	//fail: no such edge
+	if (!isEdge(startVertice, endVertice))
+		return code_error::no_edge;
+
+	//success
+	adjacencyList[startVertice][endVertice] = weight;
+	if (!isOriented)
+		adjacencyList[endVertice][startVertice] = weight;
+	return code_error::no_error;	
+}
+
+uint8_t Graph::AddEdge(const string& startVertice, const string& endVertice, const int32_t& weight)
+{
+	//fail: no first vertice
+	if (!isVertice(startVertice))
+		return code_error::no_vertice1;
+
+	//fail: no second vertice
+	if (!isVertice(endVertice))
+		return code_error::no_vertice2;
+
+	//fail: edge already exists
+	if (isEdge(startVertice, endVertice))
+		return code_error::edge_exists;
+
+	//success
+	adjacencyList[startVertice][endVertice] = weight;
+	if (!isOriented)
+		adjacencyList[endVertice][startVertice] = weight;
+	return code_error::no_error;
+}
+
+uint8_t Graph::RemoveVertice(const string& removedVertice)
+{
+	//fail: no such vertice
+	if (!isVertice(removedVertice))
+		return code_error::no_vertice1;
+
+	//success, cleaning other vertices and their edges
+	for (auto vert : adjacencyList)
+	{
+		this->RemoveEdge(vert.first, removedVertice);
+		this->RemoveEdge(removedVertice, vert.first);
+	}
+	adjacencyList.erase(removedVertice);
+	return code_error::no_error;
+}
+
+uint8_t Graph::RemoveEdge(const string& startVertice, const string& endVertice)
+{
+	if (adjacencyList[startVertice].find(endVertice) != adjacencyList[startVertice].end())
+	{
+		adjacencyList[startVertice].erase(endVertice);
+		if (!isOriented)
+		{
+			adjacencyList[endVertice].erase(startVertice);
+		}
+		//success
+		return no_error;
+	}
+	else
+		return code_error::no_edge;
+}
+
+void Graph::Unweight()
+{
+	for (auto vert1 = adjacencyList.begin(); vert1 != adjacencyList.end(); vert1++)
+	{
+		for (auto vert2 = adjacencyList.begin(); vert2 != adjacencyList.end(); vert2++)
+		{
+			if (isEdge(vert1->first, vert2->first))
+				adjacencyList [vert1->first][vert2->first] = 1;
+		}
+	}
+}
+
+void Graph::Save(string fileName)
+{
+	json j = *this;
+	std::ofstream data(fileName);
+	data << std::setw(4) << j;
+}
+
+void to_json(json& j, const Graph& graph)
+{
+	j["orient"] = graph.isOriented;
+	for (auto const& mapEl : graph.adjacencyList)
+	{
+		j["vertices"][mapEl.first] = mapEl.second;
+	}
+}
+\end{minted}
+
+\section{Файлы класса приложения}
+\label{App}
+\textbf{App.h}
+
+\begin{minted}[linenos, breaklines=true, style=bw]{c++}
+#pragma once
+
+#include <string>
+#include <iostream>
+
+#include "Graph.h"
+
+enum string_code
+{
+	printVertices = 1,
+	addVertice,
+	removeVertice,
+	addEdge,
+	removeEdge,
+	changeWeight,
+	saveGraph,
+	unweightGraph,
+
+	task2 = 10,
+	task3,
+	task4,
+	task5,
+	task6,
+	task7,
+	task8,
+	task9,
+	task10,
+	task11,
+
+	help = 30,
+	quit
+};
+
+string_code Hashing(std::string const& inString);
+void CommandMessage();
+Graph* CreateGraph(string& command);
+
+bool is_number(const string& s);
+void PrintVertices(Graph* graph);
+void AddVertice(Graph* graph);
+void RemoveVertice(Graph* graph);
+void AddEdge(Graph* graph);
+void RemoveEdge(Graph* graph);
+void ChangeWeight(Graph* graph);
+void Unweight(Graph* graph);
+\end{minted}
+
+\textbf{App.cpp}
+
+\begin{minted}[linenos, breaklines=true, style=bw]{c++}
+#include "App.h"
+
+using std::string;
+using std::getline;
+using std::cin;
+using std::cout;
+
+string_code Hashing(std::string const& inString) {
+	if (inString == "1") return printVertices;
+	if (inString == "2") return addVertice;
+	if (inString == "3") return removeVertice;
+	if (inString == "4") return addEdge;
+	if (inString == "5") return removeEdge;
+	if (inString == "6") return changeWeight;
+	if (inString == "7") return saveGraph;
+	if (inString == "8") return unweightGraph;
+
+	if (inString == "T2") return task2;
+	if (inString == "T3") return task3;
+	if (inString == "T4") return task4;
+	if (inString == "T5") return task5;
+	if (inString == "T6") return task6;
+	if (inString == "T7") return task7;
+	if (inString == "T8") return task8;
+	if (inString == "T9") return task9;
+	if (inString == "T10") return task10;
+	if (inString == "T11") return task11;
+
+	if (inString == "h") return help;
+	if (inString == "q") return quit;
+}
+
+void CommandMessage()
+{
+	std::cout << "Select command:\n"
+		<< "1 - Print Vertices\n"
+		<< "2 - Add vertice\n"
+		<< "3 - Remove vertice\n"
+		<< "4 - Add edge\n"
+		<< "5 - Remove edge\n"
+		<< "6 - Change edge's weight\n"
+		<< "7 - Save graph\n"
+		<< "8 - Unweight graph\n"
+		<< '\n'
+		<< "T2 - task 2\n"
+		<< "T3 - task 3\n"
+		<< "T4 - task 4\n"
+		<< "T5 - task 5\n"
+		<< "T6 - task 6\n"
+		<< "T7 - task 7\n"
+		<< "T8 - task 8\n"
+		<< "T9 - task 9\n"
+		<< "T10 - task 10\n"
+		<< "T11 - task 11\n"
+		<< '\n'
+		<< "'h' to print this message\n"
+		<< "'q' to exit program\n";
+}
+
+Graph* CreateGraph(string& command)
+{
+	while (true)
+	{
+		std::cout << "No graph found. Choose directed or undirected graph\n"
+			<< "1 - Directed graph\n"
+			<< "2 - Undirected graph\n";
+		getline(std::cin, command);
+		switch (Graph::Hashing(command))
+		{
+		case Graph::undirected:
+			std::cout << "Created a new undirected graph\n";
+			return new Graph(false);
+		case Graph::directed:
+			std::cout << "Created a new directed graph\n";
+			return new Graph(true);
+		default:
+			break;
+		}
+	}
+}
+
+//Hidden
+bool is_number(const std::string& s)
+{
+	std::string::const_iterator it = s.begin();
+	while (it != s.end() && (std::isdigit(*it) || (*it) == '-')) ++it;
+	return !s.empty() && it == s.end();
+}
+
+void PrintVertices(Graph* graph)
+{
+	auto adjacencyList = graph->GetAdjacencyList();
+
+	for (auto& list : adjacencyList)
+	{
+		std::cout << list.first << ": ";
+		for (auto& el : list.second)
+		{
+			std::cout << "(" << el.first << ", " << el.second << ") ";
+		}
+		std::cout << '\n';
+	}
+}
+
+void AddVertice(Graph* graph)
+{
+	string vertice;
+	std::cout << "Enter vertice to add: ";
+	getline(cin, vertice);
+	switch (graph->AddVertice(vertice))
+	{
+	case Graph::code_error::no_error:
+		std::cout << "Vertice added succesfully\n";
+		break;
+	case Graph::code_error::vertice_exists:
+		std::cout << "Vertice already exists\n";
+		break;
+	}	
+}
+
+void RemoveVertice(Graph* graph)
+{
+	string vertice;
+	std::cout << "Enter vertice to remove: ";
+	getline(cin, vertice);
+	switch (graph->RemoveVertice(vertice))
+	{
+	case Graph::code_error::no_error:
+		std::cout << "Vertice removed successfully\n";
+		break;
+	case Graph::code_error::no_vertice1:
+		std::cout << "No such vertice in graph\n";
+		break;
+	}
+}
+
+void AddEdge(Graph* graph)
+{
+	string vertice1;
+	string vertice2;
+	string weightMsg;
+	std::cout << "Enter start vertice: ";
+	getline(cin, vertice1);
+	std::cout << "Enter end vertice: ";
+	getline(cin, vertice2);
+	std::cout << "Enter edge weight (default = 1): ";
+	getline(cin, weightMsg);
+	if (weightMsg.empty())
+		weightMsg = "1";
+	while (!is_number(weightMsg))
+	{
+		std::cout << "Wrong weight value! Enter integer: ";
+		getline(cin, weightMsg);
+		if (weightMsg.empty())
+			weightMsg = "1";
+	}
+
+	switch (graph->AddEdge(vertice1, vertice2, std::stoi(weightMsg)))
+	{
+	case Graph::no_vertice1:
+		std::cout << "No vertice 1 represented in graph\n";
+		break;
+	case Graph::no_vertice2:
+		std::cout << "No vertice 2 represented in graph\n";
+		break;
+	case Graph::edge_exists:
+		std::cout << "Edge already exists between these 2 vertices\n";
+		break;
+	case Graph::no_error:
+		std::cout << "Edge added successfully\n";
+		break;
+	}
+}
+
+void RemoveEdge(Graph* graph)
+{
+	string vertice1;
+	string vertice2;
+	std::cout << "Enter start vertice: ";
+	getline(cin, vertice1);
+	std::cout << "Enter end vertice: ";
+	getline(cin, vertice2);
+
+	switch (graph->RemoveEdge(vertice1, vertice2))
+	{
+	case Graph::code_error::no_edge:
+		std::cout << "No such edge in graph\n";
+		break;
+	case Graph::code_error::no_error:
+		std::cout << "Edge removed successfully\n";
+		break;
+	}
+}
+
+void ChangeWeight(Graph* graph)
+{
+	string vertice1;
+	string vertice2;
+	string weightMsg;
+	std::cout << "Enter start vertice: ";
+	getline(cin, vertice1);
+	std::cout << "Enter end vertice: ";
+	getline(cin, vertice2);
+	std::cout << "Enter edge weight (default = 1): ";
+	getline(cin, weightMsg);
+	if (weightMsg.empty())
+		weightMsg = "1";
+	while (!is_number(weightMsg))
+	{
+		std::cout << "Wrong weight value! Enter integer: ";
+		getline(cin, weightMsg);
+	}
+
+	switch (graph->ChangeWeight(vertice1, vertice2, std::stoi(weightMsg)))
+	{
+	case Graph::no_vertice1:
+		std::cout << "No vertice 1 represented in graph\n";
+		break;
+	case Graph::no_vertice2:
+		std::cout << "No vertice 2 represented in graph\n";
+		break;
+	case Graph::no_edge:
+		std::cout << "No edge exists between these 2 vertices\n";
+		break;
+	case Graph::no_error:
+		std::cout << "Weight changed successfully\n";
+		break;
+	}
+}
+
+void Unweight(Graph* graph)
+{
+	graph->Unweight();
+	std::cout << "Weight of all edges changed to 1\n";
+}
+\end{minted}
+
+\section{Файл Main.cpp}
+\label{Main}
+
+\textbf{main.cpp}
+
+\begin{minted}[linenos, breaklines=true, style=bw]{c++}
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <map>
+
+#include "Graph.h"
+#include "App.h"
+#include "Tasks.h"
+
+const string DATA_FILE1 = "task11_2.json";
+const string DATA_FILE2 = "data4.json";
+
+int main()
+{
+	string command;
+
+	Graph* graph1;
+	std::ifstream file(DATA_FILE1);
+	if (file.is_open())
+		graph1 = new Graph(file);
+	else
+		graph1 = CreateGraph(command);
+	file.close();
+
+	file.open(DATA_FILE2);
+	Graph* graph2 = new Graph(file);
+	file.close();
+
+	CommandMessage();
+	while (true)
+	{
+		std::cout << "Command: ";
+		std::getline(std::cin, command);
+		switch (Hashing(command))
+		{
+		case string_code::printVertices:
+			PrintVertices(graph1);
+			break;
+		case string_code::addVertice:
+			AddVertice(graph1);
+			break;
+		case string_code::removeVertice:
+			RemoveVertice(graph1);
+			break;
+		case string_code::addEdge:
+			AddEdge(graph1);
+			break;
+		case string_code::removeEdge:
+			RemoveEdge(graph1);
+			break;
+		case string_code::changeWeight:
+			ChangeWeight(graph1);
+			break;
+		case string_code::unweightGraph:
+			Unweight(graph1);
+			break;
+
+		case string_code::saveGraph:
+			graph1->Save(DATA_FILE1);
+			std::cout << "Graph saved succesfully\n";
+			break;
+
+		case string_code::task2:
+			task2_14(graph1);
+			break;
+		case string_code::task3:
+			task3_9(graph1);
+			break;
+		case string_code::task4:
+			task4_10(graph1, graph2);
+			break;
+		case string_code::task5:
+			task5_2(graph1);
+			break;
+		case string_code::task6:
+			task6_20(graph1);
+			break;
+		case string_code::task7:
+			task7_prim(graph1);
+			break;
+		case string_code::task8:
+			task8_11(graph1);
+			break;
+		case string_code::task9:
+			task9_17(graph1);
+			break;
+		case string_code::task10:
+			task10_1(graph1);
+			break;
+		case string_code::task11:
+			task11_net(graph1);
+			break;
+
+		case string_code::help:
+			CommandMessage();
+			break;
+		case string_code::quit:
+			graph1->Save(DATA_FILE1);
+			return 0;
+
+		default:
+			std::cout << "Wrong Command Number\n";
+		}		
+	}
+}
+\end{minted}
+
+
+
+
+%\begin{figure}[H]
+%	\center{\includegraphics[scale=1]{fin2.png}}
+%	\caption{Количество вакансий в Москве}
+%	\label{fin2}
+%\end{figure}ы
+
+
+
+% При использовании biblatex вместо bibtex
+%\printbibliography
+
+% Окончание основного документа и начало приложений Каждая последующая секция
+% документа будет являться приложением
+\end{document}

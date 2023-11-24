@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <string>
 #include <queue>
@@ -6,6 +7,7 @@
 #include <iostream>
 #include <set>
 #include <stack>
+#include <algorithm>
 
 #include "Graph.h"
 

@@ -1,0 +1,47 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}pragma once}
+
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}Graph.h\PYGZdq{}}
+
+\PYG{k}{enum}\PYG{+w}{ }\PYG{n+nc}{string\PYGZus{}code}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{printVertices}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{addVertice}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{removeVertice}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{addEdge}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{removeEdge}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{changeWeight}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{saveGraph}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{unweightGraph}\PYG{p}{,}
+
+\PYG{+w}{	}\PYG{n}{task2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task3}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task4}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task5}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task6}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task7}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task8}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task9}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task10}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{task11}\PYG{p}{,}
+
+\PYG{+w}{	}\PYG{n}{help}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{30}\PYG{p}{,}
+\PYG{+w}{	}\PYG{n}{quit}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{n}{string\PYGZus{}code}\PYG{+w}{ }\PYG{n+nf}{Hashing}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{+w}{ }\PYG{k}{const}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{inString}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{CommandMessage}\PYG{p}{();}
+\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n+nf}{CreateGraph}\PYG{p}{(}\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{command}\PYG{p}{);}
+
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{is\PYGZus{}number}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{PrintVertices}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{AddVertice}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{RemoveVertice}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{AddEdge}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{RemoveEdge}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{ChangeWeight}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Unweight}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\end{Verbatim}

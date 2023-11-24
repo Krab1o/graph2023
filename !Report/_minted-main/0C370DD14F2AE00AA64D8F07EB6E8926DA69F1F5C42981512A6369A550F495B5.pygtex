@@ -1,0 +1,237 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}App.h\PYGZdq{}}
+
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{p}{;}
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{getline}\PYG{p}{;}
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{cin}\PYG{p}{;}
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{p}{;}
+
+\PYG{n}{string\PYGZus{}code}\PYG{+w}{ }\PYG{n+nf}{Hashing}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{+w}{ }\PYG{k}{const}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{inString}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{printVertices}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}2\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{addVertice}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}3\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{removeVertice}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}4\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{addEdge}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}5\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{removeEdge}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}6\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{changeWeight}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}7\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{saveGraph}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}8\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{unweightGraph}\PYG{p}{;}
+
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T2\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task2}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T3\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task3}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T4\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task4}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T5\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task5}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T6\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task6}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T7\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task7}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T8\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task8}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T9\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task9}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T10\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task10}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T11\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{task11}\PYG{p}{;}
+
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}h\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{help}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{inString}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}q\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{quit}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{CommandMessage}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Select command:}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}1 \PYGZhy{} Print Vertices}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}2 \PYGZhy{} Add vertice}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}3 \PYGZhy{} Remove vertice}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}4 \PYGZhy{} Add edge}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}5 \PYGZhy{} Remove edge}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}6 \PYGZhy{} Change edge\PYGZsq{}s weight}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}7 \PYGZhy{} Save graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}8 \PYGZhy{} Unweight graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T2 \PYGZhy{} task 2}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T3 \PYGZhy{} task 3}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T4 \PYGZhy{} task 4}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T5 \PYGZhy{} task 5}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T6 \PYGZhy{} task 6}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T7 \PYGZhy{} task 7}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T8 \PYGZhy{} task 8}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T9 \PYGZhy{} task 9}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T10 \PYGZhy{} task 10}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}T11 \PYGZhy{} task 11}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZsq{}h\PYGZsq{} to print this message}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{		}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZsq{}q\PYGZsq{} to exit program}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n+nf}{CreateGraph}\PYG{p}{(}\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{command}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{true}\PYG{p}{)}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No graph found. Choose directed or undirected graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{			}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}1 \PYGZhy{} Directed graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}
+\PYG{+w}{			}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}2 \PYGZhy{} Undirected graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{command}\PYG{p}{);}
+\PYG{+w}{		}\PYG{k}{switch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{::}\PYG{n}{Hashing}\PYG{p}{(}\PYG{n}{command}\PYG{p}{))}
+\PYG{+w}{		}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{undirected}\PYG{p}{:}
+\PYG{+w}{			}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Created a new undirected graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{			}\PYG{k}{return}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Graph}\PYG{p}{(}\PYG{n+nb}{false}\PYG{p}{);}
+\PYG{+w}{		}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{directed}\PYG{p}{:}
+\PYG{+w}{			}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Created a new directed graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{			}\PYG{k}{return}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Graph}\PYG{p}{(}\PYG{n+nb}{true}\PYG{p}{);}
+\PYG{+w}{		}\PYG{k}{default}\PYG{o}{:}
+\PYG{+w}{			}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{//Hidden}
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{is\PYGZus{}number}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{o}{::}\PYG{n}{const\PYGZus{}iterator}\PYG{+w}{ }\PYG{n}{it}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{();}
+\PYG{+w}{	}\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{it}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{.}\PYG{n}{end}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{isdigit}\PYG{p}{(}\PYG{o}{*}\PYG{n}{it}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{*}\PYG{n}{it}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{))}\PYG{+w}{ }\PYG{o}{++}\PYG{n}{it}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{return}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{s}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{n}{it}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{.}\PYG{n}{end}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{PrintVertices}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{auto}\PYG{+w}{ }\PYG{n}{adjacencyList}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{graph}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{GetAdjacencyList}\PYG{p}{();}
+
+\PYG{+w}{	}\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{list}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{adjacencyList}\PYG{p}{)}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{list}\PYG{p}{.}\PYG{n}{first}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{el}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{n}{list}\PYG{p}{.}\PYG{n}{second}\PYG{p}{)}
+\PYG{+w}{		}\PYG{p}{\PYGZob{}}
+\PYG{+w}{			}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}(\PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{el}\PYG{p}{.}\PYG{n}{first}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{n}{el}\PYG{p}{.}\PYG{n}{second}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}) \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{AddVertice}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{vertice}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter vertice to add: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k}{switch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{graph}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{AddVertice}\PYG{p}{(}\PYG{n}{vertice}\PYG{p}{))}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{code\PYGZus{}error}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}error}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Vertice added succesfully}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{code\PYGZus{}error}\PYG{o}{::}\PYG{n+no}{vertice\PYGZus{}exists}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Vertice already exists}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}\PYG{+w}{	}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{RemoveVertice}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{vertice}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter vertice to remove: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k}{switch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{graph}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{RemoveVertice}\PYG{p}{(}\PYG{n}{vertice}\PYG{p}{))}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{code\PYGZus{}error}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}error}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Vertice removed successfully}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{code\PYGZus{}error}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}vertice1}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No such vertice in graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{AddEdge}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{vertice1}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{weightMsg}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter start vertice: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice1}\PYG{p}{);}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter end vertice: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{);}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter edge weight (default = 1): \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{weightMsg}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{weightMsg}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{())}
+\PYG{+w}{		}\PYG{n}{weightMsg}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{is\PYGZus{}number}\PYG{p}{(}\PYG{n}{weightMsg}\PYG{p}{))}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Wrong weight value! Enter integer: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{weightMsg}\PYG{p}{);}
+\PYG{+w}{		}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{weightMsg}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{())}
+\PYG{+w}{			}\PYG{n}{weightMsg}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{	}\PYG{k}{switch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{graph}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{AddEdge}\PYG{p}{(}\PYG{n}{vertice1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{stoi}\PYG{p}{(}\PYG{n}{weightMsg}\PYG{p}{)))}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}vertice1}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No vertice 1 represented in graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}vertice2}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No vertice 2 represented in graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{edge\PYGZus{}exists}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Edge already exists between these 2 vertices}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}error}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Edge added successfully}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{RemoveEdge}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{vertice1}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter start vertice: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice1}\PYG{p}{);}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter end vertice: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{);}
+
+\PYG{+w}{	}\PYG{k}{switch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{graph}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{RemoveEdge}\PYG{p}{(}\PYG{n}{vertice1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{))}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{code\PYGZus{}error}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}edge}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No such edge in graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{code\PYGZus{}error}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}error}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Edge removed successfully}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{ChangeWeight}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{vertice1}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{weightMsg}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter start vertice: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice1}\PYG{p}{);}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter end vertice: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{);}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Enter edge weight (default = 1): \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{weightMsg}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{weightMsg}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{())}
+\PYG{+w}{		}\PYG{n}{weightMsg}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}1\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{is\PYGZus{}number}\PYG{p}{(}\PYG{n}{weightMsg}\PYG{p}{))}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Wrong weight value! Enter integer: \PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{n}{getline}\PYG{p}{(}\PYG{n}{cin}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{weightMsg}\PYG{p}{);}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{	}\PYG{k}{switch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{graph}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{ChangeWeight}\PYG{p}{(}\PYG{n}{vertice1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vertice2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{stoi}\PYG{p}{(}\PYG{n}{weightMsg}\PYG{p}{)))}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}vertice1}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No vertice 1 represented in graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}vertice2}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No vertice 2 represented in graph}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}edge}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No edge exists between these 2 vertices}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{Graph}\PYG{o}{::}\PYG{n+no}{no\PYGZus{}error}\PYG{p}{:}
+\PYG{+w}{		}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Weight changed successfully}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{		}\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Unweight}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{n}{graph}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{Unweight}\PYG{p}{();}
+\PYG{+w}{	}\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout}\PYG{+w}{ }\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Weight of all edges changed to 1}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

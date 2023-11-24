@@ -1,0 +1,69 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}pragma once}
+
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}map\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}fstream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}nlohmann/json.hpp\PYGZgt{}}
+
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{json}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{nlohmann}\PYG{o}{::}\PYG{n}{json}\PYG{p}{;}
+
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{p}{;}
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{map}\PYG{p}{;}
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{p}{;}
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{pair}\PYG{p}{;}
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{ofstream}\PYG{p}{;}
+\PYG{k}{using}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{ifstream}\PYG{p}{;}
+
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{Graph}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k}{friend}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{to\PYGZus{}json}\PYG{p}{(}\PYG{n}{json}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{j}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{Graph}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k}{public}\PYG{o}{:}
+
+\PYG{+w}{	}\PYG{k}{enum}\PYG{+w}{ }\PYG{n+nc}{graph\PYGZus{}orientation}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{undirected}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}
+\PYG{+w}{		}\PYG{n}{directed}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{};}
+
+\PYG{+w}{	}\PYG{k}{enum}\PYG{+w}{ }\PYG{n+nc}{code\PYGZus{}error}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{no\PYGZus{}error}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}
+
+\PYG{+w}{		}\PYG{n}{vertice\PYGZus{}exists}\PYG{p}{,}
+\PYG{+w}{		}\PYG{n}{no\PYGZus{}vertice1}\PYG{p}{,}
+\PYG{+w}{		}\PYG{n}{no\PYGZus{}vertice2}\PYG{p}{,}
+\PYG{+w}{		}\PYG{n}{edge\PYGZus{}exists}\PYG{p}{,}
+\PYG{+w}{		}\PYG{n}{no\PYGZus{}edge}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{};}
+
+\PYG{+w}{	}\PYG{n}{Graph}\PYG{p}{(}\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{orient}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{);}
+\PYG{+w}{	}\PYG{n}{Graph}\PYG{p}{(}\PYG{n}{ifstream}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{file}\PYG{p}{);}
+\PYG{+w}{	}\PYG{n}{Graph}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{Graph}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{copiedValue}\PYG{p}{);}
+\PYG{+w}{	}\PYG{n}{Graph}\PYG{p}{(}\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{n}{string}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{n}{string}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int32\PYGZus{}t}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{isOriented}\PYG{p}{);}
+
+\PYG{+w}{	}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{n}{string}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{n}{string}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int32\PYGZus{}t}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{+w}{ }\PYG{n}{GetAdjacencyList}\PYG{p}{()}\PYG{+w}{ }\PYG{k}{const}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{GetOrientation}\PYG{p}{();}
+\PYG{+w}{	}\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{ChangeOrientation}\PYG{p}{();}
+
+\PYG{+w}{	}\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{isVertice}\PYG{p}{(}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{isEdge}\PYG{p}{(}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{s1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{string}\PYG{+w}{ }\PYG{n}{s2}\PYG{p}{);}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{k}{static}\PYG{+w}{ }\PYG{n}{graph\PYGZus{}orientation}\PYG{+w}{ }\PYG{n+nf}{Hashing}\PYG{p}{(}\PYG{n}{string}\PYG{+w}{ }\PYG{k}{const}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{inString}\PYG{p}{);}
+
+\PYG{+w}{	}\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n+nf}{AddVertice}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{value}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n+nf}{AddEdge}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{startVertice}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{endVertice}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{int32\PYGZus{}t}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{weight}\PYG{p}{);}
+
+\PYG{+w}{	}\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n+nf}{RemoveVertice}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{vertice}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n+nf}{RemoveEdge}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{startVertice}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{endVertice}\PYG{p}{);}
+
+\PYG{+w}{	}\PYG{k+kt}{uint8\PYGZus{}t}\PYG{+w}{ }\PYG{n+nf}{ChangeWeight}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{startVertice}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{string}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{endVertice}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{int32\PYGZus{}t}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{weight}\PYG{p}{);}
+\PYG{+w}{	}\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Unweight}\PYG{p}{();}
+
+\PYG{+w}{	}\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Save}\PYG{p}{(}\PYG{n}{string}\PYG{+w}{ }\PYG{n}{fileName}\PYG{p}{);}
+\PYG{k}{private}\PYG{o}{:}
+\PYG{+w}{	}\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{n}{string}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{n}{string}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{int32\PYGZus{}t}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{+w}{ }\PYG{n}{adjacencyList}\PYG{p}{;}
+\PYG{+w}{	}\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{isOriented}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

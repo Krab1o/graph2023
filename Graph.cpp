@@ -1,5 +1,4 @@
 #include "Graph.h"
-#include <iostream>
 
 Graph::Graph(bool isOriented)
 {
@@ -58,8 +57,10 @@ bool Graph::isEdge(string s1, string s2)
 
 Graph::graph_orientation Graph::Hashing(std::string const& inString)
 {
-	if (inString == "0") return graph_orientation::undirected;
-	else return graph_orientation::directed;
+	if (inString == "0") 
+		return graph_orientation::undirected;
+	else 
+		return graph_orientation::directed;
 }
 
 //methods
@@ -167,8 +168,6 @@ void Graph::Save(string fileName)
 	data << std::setw(4) << j;
 }
 
-//TODO: create json to_file and json from_file
-
 void to_json(json& j, const Graph& graph)
 {
 	j["orient"] = graph.isOriented;
@@ -177,11 +176,3 @@ void to_json(json& j, const Graph& graph)
 		j["vertices"][mapEl.first] = mapEl.second;
 	}
 }
-
-/*
-void from_json(const json& j, Graph& graph)
-{
-	j.at("orient").get_to(graph.isOriented);
-	j.at("vertices").get_to(graph.adjacencyMatrix);
-}
-*/

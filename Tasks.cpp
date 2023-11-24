@@ -1,5 +1,3 @@
-#include<algorithm>
-
 #include "Tasks.h"
 #include "App.h"
 #include "algos.h"
@@ -110,6 +108,7 @@ void task5_2(Graph* graph)
 	getline(cin, vertice);
 	map<string, bool> used;
 	auto list = graph->GetAdjacencyList();
+	bool allFound = true;
 	for (auto it : list)
 	{
 		used[it.first] = false;
@@ -118,8 +117,14 @@ void task5_2(Graph* graph)
 	for (auto it : used)
 	{
 		if (!used[it.first])
+		{
+			allFound = false;
 			std::cout << it.first << ' ';
+		}
+			
 	}
+	if (allFound)
+		std::cout << "All vertices are reachable from " << vertice << '!';
 	std::cout << '\n';
 }
 
@@ -156,6 +161,7 @@ void task6_20(Graph* graph)
 		std::cout << "No paths between these 2 vertices!\n";
 }
 
+//Prim algorithm realisation
 void task7_prim(Graph* graph)
 {
 	Graph* tree = prim(graph);
