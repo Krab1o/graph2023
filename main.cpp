@@ -8,7 +8,7 @@
 #include "Tasks.h"
 
 const string DATA_FILE1 = "task4_1.json";
-const string DATA_FILE2 = "task4_1.json";
+const string DATA_FILE2 = "task4_2.json";
 
 int main()
 {

@@ -1,21 +1,23 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{\cyrillictext \CYRV \CYRV \CYRE \CYRD \CYRE \CYRN \CYRI \CYRE }{3}{section*.1}%
-\contentsline {section}{\numberline {1}Задание 1: создание класса графов}{4}{section.1}%
-\contentsline {section}{\numberline {2}Задание 2: Список смежности Ia}{5}{section.2}%
-\contentsline {section}{\numberline {3}Задание 3: Список смежности Ia}{5}{section.3}%
-\contentsline {section}{\numberline {4}Задание 4: Список смежности Ib: несколько графов}{5}{section.4}%
-\contentsline {section}{\numberline {5}Задание 5: Обходы графа II}{5}{section.5}%
-\contentsline {section}{\numberline {6}Задание 6: Обходы графа II}{5}{section.6}%
-\contentsline {section}{\numberline {7}Задание 7: Каркас III}{5}{section.7}%
-\contentsline {section}{\numberline {8}Задание 8: Веса IVc}{5}{section.8}%
-\contentsline {section}{\numberline {9}Задание 9: Веса IVc}{5}{section.9}%
-\contentsline {section}{\numberline {10}Задание 10: Веса IVc}{5}{section.10}%
-\contentsline {section}{\numberline {11}Задание 11: Максимальный поток}{5}{section.11}%
-\contentsline {section}{\cyrillictext \CYRZ \CYRA \CYRK \CYRL \CYRYU \CYRCH \CYRE \CYRN \CYRI \CYRE }{5}{section*.2}%
+\contentsline {section}{\numberline {1}Задание 1: Cоздание класса графов}{4}{section.1}%
+\contentsline {section}{\numberline {2}Задание 2: Список смежности Ia}{8}{section.2}%
+\contentsline {section}{\numberline {3}Задание 3: Список смежности Ia}{9}{section.3}%
+\contentsline {section}{\numberline {4}Задание 4: Список смежности Ib: несколько графов}{10}{section.4}%
+\contentsline {section}{\numberline {5}Задание 5: Обходы графа II}{13}{section.5}%
+\contentsline {section}{\numberline {6}Задание 6: Обходы графа II}{14}{section.6}%
+\contentsline {section}{\numberline {7}Задание 7: Каркас III}{16}{section.7}%
+\contentsline {section}{\numberline {8}Задание 8: Веса IVc}{18}{section.8}%
+\contentsline {section}{\numberline {9}Задание 9: Веса IVc}{20}{section.9}%
+\contentsline {section}{\numberline {10}Задание 10: Веса IVc}{25}{section.10}%
+\contentsline {section}{\numberline {11}Задание 11: Максимальный поток}{29}{section.11}%
 \redeflsection 
 \ttl@change@i {\@ne }{section}{3ex}{\hspace {-3ex}}{\appendixname ~\thecontentslabel \hspace {2ex}}{\hspace {2.3em}}{\titlerule *[0.98ex]{.}\contentspage }\relax 
 \ttl@change@v {section}{}{}{}\relax 
-\contentsline {section}{\numberline {\CYRA }Файлы класса графов}{6}{appendix.A}%
-\contentsline {section}{\numberline {\CYRB }Файлы класса приложения}{14}{appendix.B}%
-\contentsline {section}{\numberline {\CYRV }Файл Main.cpp}{23}{appendix.C}%
+\contentsline {section}{\numberline {\CYRA }Файлы класса графов}{31}{appendix.A}%
+\contentsline {section}{\numberline {\CYRB }Файлы класса приложения}{39}{appendix.B}%
+\contentsline {section}{\numberline {\CYRV }Файлы Tasks (заданий)}{48}{appendix.C}%
+\contentsline {section}{\numberline {\CYRG }Файлы алгоритмов}{60}{appendix.D}%
+\contentsline {section}{\numberline {\CYRD }Файл Main.cpp}{73}{appendix.E}%
+\contentsline {section}{\numberline {\CYRE }Используемые для тестирования файлы}{77}{appendix.F}%
 \contentsfinish 

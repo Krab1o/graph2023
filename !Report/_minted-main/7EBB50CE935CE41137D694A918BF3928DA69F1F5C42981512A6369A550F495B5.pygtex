@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}pragma once}
+
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}queue\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}set\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}stack\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}include}\PYG{+w}{ }\PYG{c+cpf}{\PYGZdq{}Graph.h\PYGZdq{}}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task2\PYGZus{}14}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task3\PYGZus{}9}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task4\PYGZus{}10}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph2}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task5\PYGZus{}2}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task6\PYGZus{}20}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task7\PYGZus{}prim}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task8\PYGZus{}11}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task9\PYGZus{}17}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task10\PYGZus{}1}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{task11\PYGZus{}net}\PYG{p}{(}\PYG{n}{Graph}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{graph}\PYG{p}{);}
+\end{Verbatim}

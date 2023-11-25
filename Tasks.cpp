@@ -324,7 +324,10 @@ void task11_net(Graph* graph)
 	std::cout << "Enter target vertice: ";
 	getline(cin, vertice2);
 	if (vertice1 == vertice2)
+	{
 		cout << "Infinite flow (source and targets are equal)\n";
+		return;
+	}
 	if (!graph->isVertice(vertice1))
 	{
 		cout << "No vertice 1 in graph\n";
